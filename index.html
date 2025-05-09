@@ -9,7 +9,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    
+    <style>
+      /* Tab Styles */
+      .tab-container {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      
+      .tab-buttons {
+        display: flex;
+        border-bottom: 1px solid #ddd;
+      }
+      
+      .tab-button {
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: #f8f8f8;
+        border: 1px solid #ddd;
+        border-bottom: none;
+        margin-right: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        transition: background-color 0.3s;
+      }
+      
+      .tab-button:hover {
+        background-color: #e8e8e8;
+      }
+      
+      .tab-button.active {
+        background-color: white;
+        border-bottom: 1px solid white;
+        position: relative;
+        top: 1px;
+        font-weight: bold;
+      }
+      
+      .tab-content {
+        display: none;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-top: none;
+        animation: fadeIn 0.5s;
+      }
+      
+      .tab-content.active {
+        display: block;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      /* Fellowship styles */
+      .fellowship-container {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .fellowship-container:last-child {
+        border-bottom: none;
+      }
+      
+      .fellowship-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      
+      .fellowship-date {
+        color: #666;
+        font-style: italic;
+        margin-bottom: 5px;
+      }
+      
+      .fellowship-description {
+        margin-bottom: 10px;
+      }
+
+      /* Talk styles */
+      .talk-container {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .talk-container:last-child {
+        border-bottom: none;
+      }
+      
+      .talk-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      
+      .talk-date {
+        color: #666;
+        font-style: italic;
+        margin-bottom: 5px;
+      }
+      
+      .talk-description {
+        margin-bottom: 10px;
+      }
+      
+      .talk-impact {
+        font-size: 0.9em;
+        color: #444;
+      }
+      
+      .talk-link {
+        display: block;
+        margin-top: 5px;
+      }
+    </style>
   </head>
 
   <body>
@@ -28,7 +142,7 @@
                   I was an AI Fellow at the 14th Batch of <a href="https://picampus-school.com/programme/school-of-artificial-intelligence/">PI School of AI</a> with a scholarship worth 12,500€.
                 </p>
                 <p>
-                  I serve as a community lead (For Geo-Regional Asia and ML-Maths Subgroups) at <a href="https://cohere.for.ai">Cohere.for.ai</a>, led by <a href="https://twitter.com/sarahookr">Sara Hooker</a>. In this role, I've hosted over 50 researchers from Asia to present their work at <a href="https://www.youtube.com/playlist?list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll">Cohere for AI</a>, completed a study group on <a href="https://atcold.github.io/NYU-DLSP21/">NYU Deep Learning</a> by Yann LeCun.
+                  I serve as a community lead (For Geo-Regional Asia) at <a href="https://cohere.for.ai">Cohere Labs Community</a>, led by <a href="https://twitter.com/sarahookr">Sara Hooker</a>. In this role, I've hosted over 50 researchers from Asia to present their work at <a href="https://www.youtube.com/playlist?list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll">Cohere Labs Community</a>, completed a study group on <a href="https://atcold.github.io/NYU-DLSP21/">NYU Deep Learning</a> by Yann LeCun.
                 </p>
 
                 <!-- <p>
@@ -90,57 +204,352 @@
               </td>
             </tr>
           </tbody></table>
+          
+          <!-- Tabbed Section -->
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
-            <td style="padding:20px;width:100%;vertical-align:middle">
-              <h2>News</h2>
-              <p></p>
-            <li>[Dec 2024] Our work on <a href="https://arxiv.org/abs/2412.17847">"Bridging the Data Provenance Gap Across Text, Speech and Video "</a> has been accepted at <b>ICLR 2025</b></li>
-            <li>[Sep 2024] Starting as a Pre-Doctoral AI Research Fellow at <a href="https://fatimafellowship.com">Fatima Fellowship</a> advised by <a href="xiaoiker.github.io">Dr. Wei Peng</a>, Research Scientist at Stanford University.</li>
-            <li>[July 2024] Our work on <a href="https://arxiv.org/abs/2407.14933">"The Rapid Decline of the AI Data Commons"</a> has been accepted at <b>NeurIPS 2024</b></li>
-            <li>
-              [June, 2024] Serving as NLP Lead for <a href="https://www.bytewiseltd.com/fellowship">Bytewise Fellowship</a>.</b>.
-            </li>
-            <li>
-              [April, 2024] Accepted in <b>Oxford Machine Learning Summer School OxML (MLX Fundamentals)</b>.
-            </li>
-            <li>
-              [April, 2024] Started working as a <b>Deep Learning Computer Vision Engineer</b> at <a href="https://roll.ai">Roll.ai</a>.
-            </li>
-            <li>
-              [Dec, 2023] Got accepted as <b>AI Fellow</b> at the 14th Batch of <a href="https://picampus-school.com/programme/school-of-artificial-intelligence/"> <b>PI School of AI</b></a> with a scholarship worth 12,500€.
-            </li>
-            <li>
-              [Dec, 2023] Started as a <b>ML-Maths Community Lead</b> at <a href="https://cohere.for.ai">Cohere.for.ai</a> led by <a href="https://twitter.com/sarahookr">Sara Hooker</a>.
-            </li>
-            <li>
-              [June, 2023] Served as <b>Urdu Language Ambassador</b> for <b><a href="https://arxiv.org/abs/2402.06619"><b>AYA</b></a></b>. <a href="https://huggingface.co/AhmadMustafa">Contributed 3 Datasets</a> and led data crowd sourcing. 
-            </li>
-            <li>
-              [Mar, 2023] Serving as Data Science Lead for <a href="https://www.bytewiseltd.com/fellowship">Bytewise Fellowship</a>.</b>. 
-            </li>
+              <td style="padding:20px;width:100%;vertical-align:middle">
+                <h2>Updates</h2>
+                
+                <div class="tab-container">
+                  <div class="tab-buttons">
+                    <div class="tab-button active" onclick="openTab(event, 'news')">News</div>
+                    <div class="tab-button" onclick="openTab(event, 'talks')">Talks & Webinars</div>
+                    <div class="tab-button" onclick="openTab(event, 'fellowships')">Fellowships & Awards</div>
+                  </div>
+                  
+                  <!-- News Tab Content -->
+                  <div id="news" class="tab-content active">
+                    <ul style="padding-left: 20px;">
+                      <li>[Dec 2024] Our work on <a href="https://arxiv.org/abs/2412.17847">"Bridging the Data Provenance Gap Across Text, Speech and Video "</a> has been accepted at <b>ICLR 2025</b></li>
+                      <li>[Sep 2024] Starting as a Pre-Doctoral AI Research Fellow at <a href="https://fatimafellowship.com">Fatima Fellowship</a> advised by <a href="xiaoiker.github.io">Dr. Wei Peng</a>, Research Scientist at Stanford University.</li>
+                      <li>[July 2024] Our work on <a href="https://arxiv.org/abs/2407.14933">"The Rapid Decline of the AI Data Commons"</a> has been accepted at <b>NeurIPS 2024</b></li>
+                      <li>[June 2024] Serving as NLP Lead for <a href="https://www.bytewiseltd.com/fellowship">Bytewise Fellowship</a>.</li>
+                      <li>[April 2024] Accepted in <b>Oxford Machine Learning Summer School OxML (MLX Fundamentals)</b>.</li>
+                      <li>[April 2024] Started working as a <b>Deep Learning Computer Vision Engineer</b> at <a href="https://roll.ai">Roll.ai</a>.</li>
+                      <li>[Dec 2023] Got accepted as <b>AI Fellow</b> at the 14th Batch of <a href="https://picampus-school.com/programme/school-of-artificial-intelligence/"> <b>PI School of AI</b></a> with a scholarship worth 12,500€.</li>
+                      <li>[Dec 2023] Started as a <b>ML-Maths Community Lead</b> at <a href="https://cohere.for.ai">Cohere Labs Community</a> led by <a href="https://twitter.com/sarahookr">Sara Hooker</a>.</li>
+                      <li>[June 2023] Served as <b>Urdu Language Ambassador</b> for <b><a href="https://arxiv.org/abs/2402.06619"><b>AYA</b></a></b>. <a href="https://huggingface.co/AhmadMustafa">Contributed 3 Datasets</a> and led data crowd sourcing.</li>
+                      <li>[Mar 2023] Serving as Data Science Lead for <a href="https://www.bytewiseltd.com/fellowship">Bytewise Fellowship</a>.</li>
+                      <li>[Feb 2023] Started as a <b>Asian Community Lead</b> at <a href="https://cohere.for.ai">Cohere Labs Community</a> led by <a href="https://twitter.com/sarahookr">Sara Hooker</a>. See our sessions: <a href="https://www.youtube.com/playlist?list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll"><b>here</b></a>.</li>
+                      <li>[Aug 2022] Graduated from <b>IIUI</b> with a Bachelors in Computer Science.</li>
+                      <li>[April 2022] Started as a <b>Machine Learning Engineer</b> at <b><a href="https://redbuffer.ai">Redbuffer.ai</a></b>.</li>
+                      <li>[Dec 2021] Started as a <b>Software Engineer (Deep Learning and Computer Vision)</b> at <b><a href="https://wortel.ai">Wortel.ai</a></b>.</li>
+                      <li>[July 2021] Started as a <b>Deep Learning and Computer Vision Intern</b> at <b><a href="https://wortel.ai">Wortel.ai</a></b>.</li>
+                      <li>[Sep 2018] Started my Undergraduate studies in CS at <a href="https://www.iiu.edu.pk/">IIUI</a>.</li>
+                    </ul>
+                  </div>
+                  
+                  <!-- Talks & Webinars Tab Content -->
+                  <div id="talks" class="tab-content">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+                      <div style="width: 48%;">
+                        <h3>My Talks & Presentations</h3>
+                        
+                        <h4>In-person Talks</h4>
+                        <div class="talk-container">
+                          <div class="talk-title">Image Generation with Diffusion Models</div>
+                          <div class="talk-date">April 19, 2024</div>
+                          <div class="talk-description">
+                            Dive deep into the world of Image Generation Diffusion models.
+                          </div>
+                          <div class="talk-impact">Impact: 50 Students and Professionals</div>
+                          <a class="talk-link" href="https://www.linkedin.com/posts/10pearls-pakistan_aisummit2024-aisummit-10pearls-activity-7186000395133992960-KANy/">View Event</a>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">Self Supervised Contrastive Deep Learning in Computer Vision</div>
+                          <div class="talk-date">December 2, 2023</div>
+                          <div class="talk-description">
+                            In this session we learned how self-supervised learning is leveraged in Computer Vision by diving into SimCLR by Google, SimCLR v2, and CLIP by OpenAI.
+                          </div>
+                          <div class="talk-impact">Impact: 1100 students / industry professionals</div>
+                          <a class="talk-link" href="https://gdg.community.dev/events/details/google-gdg-cloud-islamabad-presents-cloud-ai-devfest-islamabad-2023-ai-odyssey-navigating-the-future-of-tech/">View Event</a>
+                          <a class="talk-link" href="https://www.linkedin.com/feed/update/urn:li:activity:7134767808093052928/">LinkedIn Post</a>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">Semantic Search using Deep Learning</div>
+                          <div class="talk-date">March 19, 2023</div>
+                          <div class="talk-description">
+                            Semantic search is a technique that uses deep learning algorithms to understand the context and meaning behind user queries, rather than just matching keywords. Attendees learned about the importance of semantic search, how it works, implementation in Python, and challenges.
+                          </div>
+                          <div class="talk-impact">Impact: Around 50 participants</div>
+                          <a class="talk-link" href="https://bit.ly/gdgc-iwd2023-agenda">View Event</a>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">Creating Interactive AI Applications: Deploying TensorFlow Models with Gradio and Hugging Face Spaces</div>
+                          <div class="talk-date">February 26, 2023</div>
+                          <div class="talk-description">
+                            Most models die in Jupyter Notebook and never reach a wider audience. With Gradio and Hugging Face Spaces, you can easily deploy your TensorFlow models with ease and create user-friendly interfaces for others to interact with.
+                          </div>
+                          <div class="talk-impact">Impact: Over 100 students, beginners, and industry professionals</div>
+                          <a class="talk-link" href="https://10pearlsuniversity.org/events/ai-summit-2023/">View Event</a>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">Language Guided Recognition using CLIP (Machine Learning Focus Group)</div>
+                          <div class="talk-date">December 31, 2022</div>
+                          <div class="talk-description">
+                            Language Guided Computer Vision is now an active field of research in Computer Vision and surpases Supervised Learning. Learn how to use CLIP, a Language Guided Classifier by OpenAI by building a Semantic Image Search Engine.
+                          </div>
+                          <div class="talk-impact">Impact: Around 140 participants</div>
+                          <a class="talk-link" href="https://gdg.community.dev/events/details/google-gdg-cloud-islamabad-presents-google-cloud-devfest-2022-islamabad/">View Event</a>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">How Convolutional Neural Networks work (Machine Learning Focus Group)</div>
+                          <div class="talk-date">December 31, 2022</div>
+                          <div class="talk-description">
+                            Convolutional Neural Networks are core-part of Computer Vision Deep Learning. They are widely used in real-world applications involving Object Classification, Object Detection, Object Segmentation, etc.
+                          </div>
+                          <div class="talk-impact">Impact: Around 140 participants</div>
+                          <a class="talk-link" href="https://gdg.community.dev/events/details/google-gdg-cloud-islamabad-presents-google-cloud-devfest-2022-islamabad/">View Event</a>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">How Convolutional Neural Networks work</div>
+                          <div class="talk-date">December 24, 2022</div>
+                          <div class="talk-description">
+                            Convolutional Neural Networks are core-part of Computer Vision Deep Learning. This talk covers the history and theory of CNNs, their applications, and how easy it is to use it in Tensorflow 2.0.
+                          </div>
+                          <div class="talk-impact">Impact: Over 50 students, professionals and beginners</div>
+                          <a class="talk-link" href="https://gdg.community.dev/events/details/google-gdg-kolachi-presents-devfest-karachi-2022/">View Event</a>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">Video Privacy Application</div>
+                          <div class="talk-date">March 2023</div>
+                          <div class="talk-description">
+                            In-office session on the project Video Privacy Application discussing extensive findings on using OCR in real-time in our project.
+                          </div>
+                          <div class="talk-impact">Impact: 10 Machine Learning Engineers</div>
+                          <a class="talk-link" href="https://medium.com/red-buffer/improving-the-latency-of-an-ocr-based-system-196f5badace9">Related Article</a>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">Introduction to AWS rekognition</div>
+                          <div class="talk-date">April 6, 2023</div>
+                          <div class="talk-description">
+                            In-office session on how to use AWS rekognition for multiple tasks and on live-stream.
+                          </div>
+                          <div class="talk-impact">Impact: 10 Machine Learning Engineers</div>
+                        </div>
+                        
+                        <h4>Webinars</h4>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">"Data Science | Information, Trend, Road Map for Beginners"</div>
+                          <div class="talk-date">April 16, 2023</div>
+                          <div class="talk-description">
+                            An online webinar for University students discussing the important parts of Data Science and Machine Learning, roadmaps, general trends, tools and technologies, courses and how to get started with it.
+                          </div>
+                          <div class="talk-impact">Impact: 23 participants</div>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">Understanding SimCLRv2 by GoogleAI</div>
+                          <div class="talk-date">April 12, 2023</div>
+                          <div class="talk-description">
+                            An online webinar on SimCLRv2 and SimCLR by GoogleAI which showed the first time large scale application of self-supervised and semi-supervised learning on Images.
+                          </div>
+                          <div class="talk-impact">Impact: 15 participants</div>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">Language Guided Recognition | CLIP</div>
+                          <div class="talk-date">November 19, 2022</div>
+                          <div class="talk-description">
+                            An online webinar on Language Guided Recognition using CLIP by OpenAI which can perform zero shot classification and surpass the state of the art classifiers.
+                          </div>
+                          <div class="talk-impact">Impact: 20 participants</div>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">How Convolutional Neural Networks work</div>
+                          <div class="talk-date">November 19, 2022</div>
+                          <div class="talk-description">
+                            When it comes to Computer Vision, CNN plays a major role in creating an impact regarding how technology interacts with the world. From facial and handwritten recognitions to biometric authentications, CNN has been at the forefront of various breakthroughs within the Deep Learning space.
+                          </div>
+                          <div class="talk-impact">Impact: 100 participants</div>
+                          <a class="talk-link" href="https://10pearlsuniversity.org/events/how-convolutional-neural-networks-work-in-deep-learning/">View Event</a>
+                        </div>
+                      </div>
+                      
+                      <div style="width: 48%;">
+                        <h3>Hosted Talks at Cohere Labs Community (Selected only)</h3>
+                        <p>As a community lead at Cohere Labs Community, I've hosted over 50 sessions inviting guest speakers from Stanford, MIT, Google, UC Berkeley, Allen Institute of AI, and other top institutions to present their research. Below are some of the most popular talks:</p>
+                        <p>For the complete list of hosted talks, visit the <a href="https://www.youtube.com/playlist?list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll">Cohere Labs Community YouTube Playlist</a>.</p>
 
-            <li>
-              [Feb, 2023] Started as a <b>Asian Community Lead</b> at <a href="https://cohere.for.ai">Cohere.for.ai</a> led by <a href="https://twitter.com/sarahookr">Sara Hooker</a>. See our sessions: <a href="https://www.youtube.com/playlist?list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll"><b>here</b></a>.
-            </li>
-            <li>[Aug, 2022] Graduated from <b>IIUI</b> with a Bachelors in Computer Science.</li>
+                        <div class="talk-container">
+                          <div class="talk-title">SigLIP: Sigmoid Loss for Language Image Pre-training</div>
+                          <div class="talk-date">December 9, 2023</div>
+                          <div class="talk-description">
+                            Talk by Lucas, a senior researcher at <strike>Google DeepMind</strike> OpenAI in Zürich.
+                          </div>
+                          <div class="talk-impact">Impact: 1085 views</div>
+                          <a class="talk-link" href="https://www.youtube.com/watch?v=Nk9YnMHB6hU&list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll&index=41">Watch on YouTube</a>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">Why you should learn Mathematics for Machine Learning</div>
+                          <div class="talk-date">March 19, 2024</div>
+                          <div class="talk-description">
+                            Talk by Cheng Soon Ong, senior principal research scientist at the Statistical Machine Learning Group, Data61, CSIRO, and author of "Mathematics for Machine Learning."
+                          </div>
+                          <div class="talk-impact">Impact: 755 views</div>
+                          <a class="talk-link" href="https://www.youtube.com/watch?v=Rru6Bm-1BKI">Watch on YouTube</a>
+                        </div>
+                        
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">GILL: Generating Images with Multimodal Large Language Models</div>
+                          <div class="talk-date">September 8, 2023</div>
+                          <div class="talk-description">
+                            Talk by Jing Yu Koh, a machine learning PhD student at Carnegie Mellon University.
+                          </div>
+                          <div class="talk-impact">Impact: 700 views</div>
+                          <a class="talk-link" href="https://www.youtube.com/watch?v=aUoiQ4xFknQ&list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll&index=49">Watch on YouTube</a>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">Understanding diffusion models: A unified perspective</div>
+                          <div class="talk-date">June 5, 2024</div>
+                          <div class="talk-description">
+                            Talk by Calvin Luo, PhD student at Brown University.
+                          </div>
+                          <div class="talk-impact">Impact: 700 views</div>
+                          <a class="talk-link" href="https://www.youtube.com/watch?v=bGh_uBbj_Po">Watch on YouTube</a>
+                        </div>
+                        <div class="talk-container">
+                          <div class="talk-title">Beyond A* Better Planning with Transformers via Search Dynamics Bootstrapping</div>
+                          <div class="talk-date">June 13, 2024</div>
+                          <div class="talk-description">
+                            Talk by Lucas Lehnert, a postdoctoral researcher as part of the FAIR team at Meta.
+                          </div>
+                          <div class="talk-impact">Impact: 139 views</div>
+                          <a class="talk-link" href="https://www.youtube.com/watch?v=ewZTRIqLc54&list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll&index=6&t=50s">Watch on YouTube</a>
+                        </div>
+                        
+                        <div class="talk-container">
+                          <div class="talk-title">Deep Dive into the Mathematics of VAE</div>
+                          <div class="talk-date">April 23, 2024</div>
+                          <div class="talk-description">
+                            Talk by Dr. Matthew Bernstein, Principal Scientist, Computational Biology at Immunitas Therapeutics.
+                          </div>
+                          <div class="talk-impact">Impact: 294 views</div>
+                          <a class="talk-link" href="https://www.youtube.com/watch?v=FOabT5lyLoI&list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll&index=20">Watch on YouTube</a>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Fellowships & Awards Tab Content -->
+                  <div id="fellowships" class="tab-content">
+                    <div class="fellowship-container">
+                      <div class="fellowship-title">Pre-Doctoral AI Research Fellow - Fatima Fellowship</div>
+                      <div class="fellowship-date">September 2024 - Present</div>
+                      <div class="fellowship-description">
+                        Research fellowship advised by <a href="https://xiaoiker.github.io">Dr. Wei Peng</a>, Research Scientist at Stanford University.
+                      </div>
+                      <a href="https://fatimafellowship.com">Fellowship Website</a>
+                    </div>
+                    
+                    <div class="fellowship-container">
+                      <div class="fellowship-title">Oxford Machine Learning Summer School (OxML) - MLX Fundamentals</div>
+                      <div class="fellowship-date">April 2024</div>
+                      <div class="fellowship-description">
+                        Selected participant for the prestigious Oxford Machine Learning Summer School.
+                      </div>
+                    </div>
+                    
+                    <div class="fellowship-container">
+<div class="fellowship-title">AI Fellow - PI School of AI</div>
+                      <div class="fellowship-date">December 2023</div>
+                      <div class="fellowship-description">
+                        Got accepted as AI Fellow at the 14th Batch of PI School of AI with a scholarship worth 12,500€. Only participant selected from Pakistan.
+                      </div>
+                      <a href="https://picampus-school.com/programme/school-of-artificial-intelligence/">Fellowship Website</a>
+                    </div>
+                    
+                    
+                    <div class="fellowship-container">
+                      <div class="fellowship-title">Asian Community Lead - Cohere Labs Community</div>
+                      <div class="fellowship-date">February 2023 - Present</div>
+                      <div class="fellowship-description">
+                        Leading the Geo-Regional Asia community group at Cohere Labs Community, hosting over 50 researchers from Asia to present their work.
+                      </div>
+                      <a href="https://cohere.for.ai">Cohere Labs Community Website</a>
+                      <a href="https://www.youtube.com/playlist?list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll">View Sessions</a>
+                    </div>
 
-            <li>[April, 2022] Started as a <b>Machine Learning Engineer</b> at <b><a href="https://redbuffer.ai">Redbuffer.ai</a></b>.</li>
+                      <div class="fellowship-container">
+                      <div class="fellowship-title">ML-Maths Community Lead - Cohere Labs Community</div>
+                      <div class="fellowship-date">December 2023 - Sep 2024</div>
+                      <div class="fellowship-description">
+                        Co-Lead the ML-Maths community group at Cohere Labs Community, organizing research talks and study groups.
+                      </div>
+                      <a href="https://cohere.for.ai">Cohere Labs Community Website</a>
+                    </div>
 
-            <li>[Dec, 2021] Started as a <b>Software Engineer (Deep Learning and Computer Vision)</b> at <b><a href="https://wortel.ai">Wortel.ai</a></b>.</li>
+                    
+                    <div class="fellowship-container">
+                      <div class="fellowship-title">Urdu Language Ambassador - AYA</div>
+                      <div class="fellowship-date">June 2023</div>
+                      <div class="fellowship-description">
+                        Served as Urdu Language Ambassador for AYA. Contributed 3 datasets and led data crowd sourcing.
+                      </div>
+                      <a href="https://arxiv.org/abs/2402.06619">AYA Paper</a>
+                      <a href="https://huggingface.co/AhmadMustafa">Contributed Datasets</a>
+                    </div>
+                    
+                    <div class="fellowship-container">
+                      <div class="fellowship-title">Data Science Lead - Bytewise Fellowship</div>
+                      <div class="fellowship-date">March 2023 - Present</div>
+                      <div class="fellowship-description">
+                        Serving as Data Science Lead for Bytewise Fellowship.
+                      </div>
+                      <a href="https://www.bytewiseltd.com/fellowship">Fellowship Website</a>
+                    </div>
 
-            <li>[July, 2021] Started as a <b>Deep Learning and Computer Vision Intern</b> at <b><a href="https://wortel.ai">Wortel.ai</a></b>.</li>
-            <li>[Sep, 2018] Started my Undergraduate studies in CS at <a href="https://www.iiu.edu.pk/">IIUI</a></li>
-
-          </td>
-
+                    <div class="fellowship-container">
+                      <div class="fellowship-title">NLP Lead - Bytewise Fellowship</div>
+                      <div class="fellowship-date">June 2024 - Present</div>
+                      <div class="fellowship-description">
+                        Serving as NLP Lead for Bytewise Fellowship.
+                      </div>
+                      <a href="https://www.bytewiseltd.com/fellowship">Fellowship Website</a>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- JavaScript for Tab Functionality -->
+                <script>
+                  function openTab(evt, tabName) {
+                    var i, tabContent, tabButtons;
+                    
+                    // Hide all tab content
+                    tabContent = document.getElementsByClassName("tab-content");
+                    for (i = 0; i < tabContent.length; i++) {
+                      tabContent[i].classList.remove("active");
+                    }
+                    
+                    // Remove "active" class from all tab buttons
+                    tabButtons = document.getElementsByClassName("tab-button");
+                    for (i = 0; i < tabButtons.length; i++) {
+                      tabButtons[i].classList.remove("active");
+                    }
+                    
+                    // Show the specific tab content and add "active" class to the button that opened the tab
+                    document.getElementById(tabName).classList.add("active");
+                    evt.currentTarget.classList.add("active");
+                  }
+                </script>
+              </td>
             </tr>
-            <!-- <tr>
-          
-
-            </tr> -->
-          </tbody>
-          </table>
+          </tbody></table>
 
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
             <tbody>
@@ -165,8 +574,6 @@
                     </div>
                   </div>
 
-
-
                   <div class="publication-container">
                     <img class="publication-image" src="images/dpi_logo.png" alt="Bridging the Gap">
                     <div class="publication-content">
@@ -179,9 +586,6 @@
                       <div class="publication-links">
                         <a href="https://www.dataprovenance.org/">project page</a> / <a href="https://arxiv.org/abs/2412.17847">arXiv</a>
                       </div>
-                      <!-- <div class="publication-description">
-                        Brief description of your second paper goes here.
-                      </div> -->
                     </div>
                   </div>
 
@@ -196,38 +600,12 @@
                       <div class="publication-links">
                         <a href="https://www.dataprovenance.org/">Project page</a>/ <a href="https://arxiv.org/abs/2407.14933">arXiv</a>
                       </div>
-                      <!-- <div class="publication-description">
-                        This paper examines the rapid decline of consent and data availability in AI training corpora, highlighting the challenges and implications for the AI data commons.
-                      </div> -->
                     </div>
                   </div>
-
-
-
-                          <!-- Second paper (new addition) -->
-                  <!-- <div class="publication-container">
-                    <img class="publication-image" src="/path/to/second/paper/image.jpg" alt="Second Paper Title">
-                    <div class="publication-content">
-                      <div class="publication-title">Title of Your Second Paper</div>
-                      <div class="publication-authors">
-                        Author 1, Author 2, <strong>Ahmad Mustafa Anis</strong>, Author 3, Author 4
-                      </div>
-                      <div class="publication-venue">Conference/Journal Name, Year</div>
-                      <div class="publication-links">
-                        <a href="#">project page</a> / <a href="#">video</a> / <a href="#">arXiv</a>
-                      </div>
-                      <div class="publication-description">
-                        Brief description of your second paper goes here.
-                      </div>
-                    </div>
-                  </div> -->
-
                 </td>
               </tr>
-              
             </tbody>
           </table>
-
 
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
@@ -269,29 +647,10 @@
             <li><b>GILL: Generating Images with Multimodal Language Models</b>,
               <a href="https://arxiv.org/abs/2305.17216">abs</a>
             </li>
-            
-
-          </td>
-
+            </td>
             </tr>
-            <!-- <tr>
-          
-
-            </tr> -->
-          </tbody>
-          </table>
-          
-          
-            <!-- <tr>
-          
-
-            </tr> -->
-          </tbody>
-          </table>
-          
-            
-            
           </tbody></table>
+          
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:0px">
