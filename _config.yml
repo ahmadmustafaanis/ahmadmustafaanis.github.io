@@ -2,6 +2,7 @@ title: Ahmad Mustafa Anis
 description: Research, engineering, and notes by Ahmad Mustafa Anis.
 url: "https://ahmadmustafaanis.github.io"
 baseurl: ""
+asset_version: "20260614-1"
 
 markdown: kramdown
 kramdown:

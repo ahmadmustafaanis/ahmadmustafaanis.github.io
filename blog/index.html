@@ -14,7 +14,7 @@ permalink: /blog/
     <meta name="description" content="{{ page.description }}">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="shortcut icon" href="{{ '/images/favicon/favicon.ico' | relative_url }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ '/stylesheet.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/stylesheet.css' | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}">
   </head>
   <body class="blog-body">
     <header class="blog-site-header">
