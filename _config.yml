@@ -1,0 +1,25 @@
+title: Ahmad Mustafa Anis
+description: Research, engineering, and notes by Ahmad Mustafa Anis.
+url: "https://ahmadmustafaanis.github.io"
+baseurl: ""
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+collections:
+  blogs:
+    output: true
+    permalink: /blog/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: blogs
+    values:
+      layout: blog
+      author: Ahmad Mustafa Anis
+
+exclude:
+  - BLOGGING.md

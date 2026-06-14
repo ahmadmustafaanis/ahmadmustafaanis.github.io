@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
@@ -161,7 +164,8 @@
 
                   <a href="https://github.com/ahmadmustafaanis">Github</a> &nbsp;/&nbsp;
                   <a href="https://medium.com/@ahmadanis5050">Medium</a> &nbsp;/&nbsp;
-                  <a href="https://www.linkedin.com/in/ahmad-anis/">Linkedin</a>
+                  <a href="https://www.linkedin.com/in/ahmad-anis/">Linkedin</a> &nbsp;/&nbsp;
+                  <a href="{{ '/blog/' | relative_url }}">Blog</a>
                 </p>
               </td>
               <td style="padding:2.5%;width:40%;max-width:40%">
@@ -201,6 +205,34 @@
                 </ul>
                   
                 </p>
+              </td>
+            </tr>
+          </tbody></table>
+
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:20px;width:100%;vertical-align:middle">
+                <div class="section-heading-row">
+                  <div>
+                    <span class="blog-kicker">Latest writing</span>
+                    <h2>Research notes</h2>
+                  </div>
+                  <a href="{{ '/blog/' | relative_url }}">View all writing &rarr;</a>
+                </div>
+
+                {% assign latest_blogs = site.blogs | sort: "date" | reverse %}
+                {% if latest_blogs.size > 0 %}
+                  <div class="blog-card-grid blog-card-grid-home">
+                    {% for post in latest_blogs limit: 3 %}
+                      {% include blog-card.html post=post %}
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <div class="blog-home-empty">
+                    <p>Long-form research notes are coming soon.</p>
+                    <a href="{{ '/blog/' | relative_url }}">Visit the blog &rarr;</a>
+                  </div>
+                {% endif %}
               </td>
             </tr>
           </tbody></table>

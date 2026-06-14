@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="author" content="{{ page.author | default: site.title }}">
+    <meta name="description" content="{{ page.description | default: page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.description | default: page.excerpt | strip_html | strip_newlines | truncate: 160 }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <link rel="shortcut icon" href="{{ '/images/favicon/favicon.ico' | relative_url }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ '/stylesheet.css' | relative_url }}">
+  </head>
+  <body class="blog-body">
+    <header class="blog-site-header">
+      <nav class="blog-shell blog-nav" aria-label="Primary navigation">
+        <a class="blog-brand" href="{{ '/' | relative_url }}">Ahmad Mustafa Anis</a>
+        <div class="blog-nav-links">
+          <a href="{{ '/' | relative_url }}">Home</a>
+          <a href="{{ '/blog/' | relative_url }}">All writing</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="blog-shell">
+      <article class="blog-post">
+        <header class="blog-post-header">
+          <a class="blog-back-link" href="{{ '/blog/' | relative_url }}">&larr; All writing</a>
+          {% if page.topic %}
+            <a class="blog-topic" href="{{ '/blog/' | relative_url }}#{{ page.topic | slugify }}">{{ page.topic }}</a>
+          {% endif %}
+          <h1>{{ page.title }}</h1>
+          {% if page.description %}<p class="blog-lead">{{ page.description }}</p>{% endif %}
+          <div class="blog-byline">
+            <span>{{ page.author | default: site.title }}</span>
+            <span aria-hidden="true">&middot;</span>
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+            {% if page.read_time %}
+              <span aria-hidden="true">&middot;</span>
+              <span>{{ page.read_time }}</span>
+            {% endif %}
+          </div>
+        </header>
+
+        <div class="blog-content">
+          {{ content }}
+        </div>
+
+        <footer class="blog-post-footer">
+          <p>Thanks for reading.</p>
+          <a href="{{ '/blog/' | relative_url }}">Explore more writing &rarr;</a>
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>

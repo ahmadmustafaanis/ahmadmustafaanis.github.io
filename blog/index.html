@@ -1,0 +1,71 @@
+---
+layout: null
+title: Writing
+description: Research notes, technical explainers, and ideas by Ahmad Mustafa Anis.
+permalink: /blog/
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="author" content="Ahmad Mustafa Anis">
+    <meta name="description" content="{{ page.description }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <link rel="shortcut icon" href="{{ '/images/favicon/favicon.ico' | relative_url }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ '/stylesheet.css' | relative_url }}">
+  </head>
+  <body class="blog-body">
+    <header class="blog-site-header">
+      <nav class="blog-shell blog-nav" aria-label="Primary navigation">
+        <a class="blog-brand" href="{{ '/' | relative_url }}">Ahmad Mustafa Anis</a>
+        <div class="blog-nav-links">
+          <a href="{{ '/' | relative_url }}">Home</a>
+          <a href="{{ '/blog/' | relative_url }}" aria-current="page">Writing</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="blog-shell blog-index">
+      <header class="blog-index-hero">
+        <span class="blog-kicker">Research and engineering notes</span>
+        <h1>Ideas, explained carefully.</h1>
+        <p>Long-form notes on machine learning, computer vision, research practice, and the questions I am exploring.</p>
+      </header>
+
+      {% assign sorted_blogs = site.blogs | sort: "date" | reverse %}
+      {% if sorted_blogs.size > 0 %}
+        {% assign topic_groups = sorted_blogs | group_by_exp: "post", "post.topic | default: 'Other notes'" %}
+        <nav class="topic-nav" aria-label="Blog topics">
+          <span>Browse by topic</span>
+          {% for group in topic_groups %}
+            <a href="#{{ group.name | slugify }}">{{ group.name }} <small>{{ group.items.size }}</small></a>
+          {% endfor %}
+        </nav>
+
+        {% for group in topic_groups %}
+          <section class="topic-section" id="{{ group.name | slugify }}">
+            <div class="topic-heading">
+              <div>
+                <span class="blog-kicker">Topic</span>
+                <h2>{{ group.name }}</h2>
+              </div>
+              <span>{{ group.items.size }} {% if group.items.size == 1 %}article{% else %}articles{% endif %}</span>
+            </div>
+            <div class="blog-card-grid">
+              {% for post in group.items %}
+                {% include blog-card.html post=post %}
+              {% endfor %}
+            </div>
+          </section>
+        {% endfor %}
+      {% else %}
+        <section class="blog-empty-state">
+          <h2>The first article is in progress.</h2>
+          <p>New research notes will appear here soon.</p>
+        </section>
+      {% endif %}
+    </main>
+  </body>
+</html>
