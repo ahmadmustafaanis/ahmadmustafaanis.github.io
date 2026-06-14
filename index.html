@@ -12,133 +12,31 @@ layout: null
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <style>
-      /* Tab Styles */
-      .tab-container {
-        width: 100%;
-        margin-bottom: 20px;
-      }
-      
-      .tab-buttons {
-        display: flex;
-        border-bottom: 1px solid #ddd;
-      }
-      
-      .tab-button {
-        padding: 10px 20px;
-        cursor: pointer;
-        background-color: #f8f8f8;
-        border: 1px solid #ddd;
-        border-bottom: none;
-        margin-right: 5px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        transition: background-color 0.3s;
-      }
-      
-      .tab-button:hover {
-        background-color: #e8e8e8;
-      }
-      
-      .tab-button.active {
-        background-color: white;
-        border-bottom: 1px solid white;
-        position: relative;
-        top: 1px;
-        font-weight: bold;
-      }
-      
-      .tab-content {
-        display: none;
-        padding: 15px;
-        border: 1px solid #ddd;
-        border-top: none;
-        animation: fadeIn 0.5s;
-      }
-      
-      .tab-content.active {
-        display: block;
-      }
-      
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-
-      /* Fellowship styles */
-      .fellowship-container {
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #eee;
-      }
-      
-      .fellowship-container:last-child {
-        border-bottom: none;
-      }
-      
-      .fellowship-title {
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-      
-      .fellowship-date {
-        color: #666;
-        font-style: italic;
-        margin-bottom: 5px;
-      }
-      
-      .fellowship-description {
-        margin-bottom: 10px;
-      }
-
-      /* Talk styles */
-      .talk-container {
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #eee;
-      }
-      
-      .talk-container:last-child {
-        border-bottom: none;
-      }
-      
-      .talk-title {
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-      
-      .talk-date {
-        color: #666;
-        font-style: italic;
-        margin-bottom: 5px;
-      }
-      
-      .talk-description {
-        margin-bottom: 10px;
-      }
-      
-      .talk-impact {
-        font-size: 0.9em;
-        color: #444;
-      }
-      
-      .talk-link {
-        display: block;
-        margin-top: 5px;
-      }
-    </style>
   </head>
 
-  <body>
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+  <body class="home-body">
+    <header class="blog-site-header">
+      <nav class="blog-shell blog-nav" aria-label="Primary navigation">
+        <a class="blog-brand" href="{{ '/' | relative_url }}">Ahmad Mustafa Anis</a>
+        <div class="blog-nav-links">
+          <a href="#research">Research</a>
+          <a href="#updates">Updates</a>
+          <a href="#publications">Publications</a>
+          <a href="{{ '/blog/' | relative_url }}">Writing</a>
+        </div>
+      </nav>
+    </header>
+
+    <table class="home-page"><tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <table class="hero-section"><tbody>
             <tr style="padding:0px">
-              <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align: center;">
+              <td class="hero-copy">
+                <span class="blog-kicker">Computer vision researcher and engineer</span>
+                <h1 class="name">
                   Ahmad Mustafa Anis
-                </p>
+                </h1>
                 <p>I'm a Deep Learning Computer Vision Engineer at <a href="https://roll.ai">Roll.ai</a> and was a participant of the highly competitive <a href="https://fatimafellowship.com"> Fatima Fellowship</a> (Sep 2024-Jun 2025) supervised by <a href="https://xiaoiker.github.io"> Dr. Wei Peng</a> from Stanford University. I completed my Bachelors in Computer Science from International Islamic University Pakistan, advised by <a href="https://scholar.google.com.pk/citations?user=XiR3-tMAAAAJ&hl=en">Dr. Muhammad Nadeem</a>.
                 </p>
                 <p>
@@ -156,60 +54,50 @@ layout: null
                 See my Resume <a href="resume/Ahmad_Resume.pdf">here </a> (Updated Jul 2025).
                 </p>
 
-                <p style="text-align:center">
-                  <a href="mailto:ahmadanis5050@gmail.com">Email</a> &nbsp;/&nbsp;
-                  <a href="https://twitter.com/AhmadMustafaAn1">Twitter</a> &nbsp;/&nbsp;
-                  <a href="https://scholar.google.com/citations?user=58X2MYsAAAAJ&hl=en">Google Scholar</a> &nbsp;/&nbsp;
-                  <a href="http://huggingface.co/AhmadMustafa">Hugging Face</a> &nbsp;/&nbsp;
-
-                  <a href="https://github.com/ahmadmustafaanis">Github</a> &nbsp;/&nbsp;
-                  <a href="https://medium.com/@ahmadanis5050">Medium</a> &nbsp;/&nbsp;
-                  <a href="https://www.linkedin.com/in/ahmad-anis/">Linkedin</a> &nbsp;/&nbsp;
+                <p class="profile-links">
+                  <a href="mailto:ahmadanis5050@gmail.com">Email</a>
+                  <a href="https://twitter.com/AhmadMustafaAn1">Twitter</a>
+                  <a href="https://scholar.google.com/citations?user=58X2MYsAAAAJ&hl=en">Google Scholar</a>
+                  <a href="http://huggingface.co/AhmadMustafa">Hugging Face</a>
+                  <a href="https://github.com/ahmadmustafaanis">Github</a>
+                  <a href="https://medium.com/@ahmadanis5050">Medium</a>
+                  <a href="https://www.linkedin.com/in/ahmad-anis/">Linkedin</a>
                   <a href="{{ '/blog/' | relative_url }}">Blog</a>
                 </p>
               </td>
-              <td style="padding:2.5%;width:40%;max-width:40%">
-                <a href="images/me3.jpeg"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/me3.jpg" class="hoverZoomLink"></a>
+              <td class="hero-photo-cell">
+                <a href="images/me3.jpeg"><img class="profile-photo" alt="Ahmad Mustafa Anis" src="images/me3.jpeg"></a>
               </td>
             </tr>
           </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <table class="home-section" id="research"><tbody>
               <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
                 <h2>Research</h2>
-                <p>
-                  I am interested in Deep Learning in general, and read literature from different fields. In-particular, I try to follow the research in the following areas:
-                  <ul>
-                    <li>
-                        Improving Reasoning in Vision-Language Models
-                        <ul>
-                            <li>Visual Question Answering (VQA)</li>
-                            <ul>
-                              How well can a model reason on an image/video and answer questions. How can we extend it to multi-cultural and multi-lingual settings while maintaining alignment.
-                            </ul>
-                            <li>Image Generation</li>
-                            <ul>
-                            How well can a model reasonate with the textual caption and generate image. How can we extend it to a multi-cultural and multi-lingual settings while maintaining alignment.
-                            </ul>
-
-                        </ul>
-                    </li>
-                    <li>Self-Supervised Learning</li>
+                <p>I am interested in deep learning broadly and follow research across several connected fields. In particular, I focus on:</p>
+                <ul class="research-grid">
+                  <li>
+                    <strong>Vision-Language Reasoning</strong>
+                    <span>How well can models reason about images and video while remaining useful across cultures and languages?</span>
                     <ul>
-                      How to learn good representations from a huge amount of data that can be used for down-stream tasks without huge efforts.
+                      <li>Visual question answering</li>
+                      <li>Image generation</li>
                     </ul>
-                    <li>World Models</li>
-                    <ul>
-                      How can we make models that can plan and reason in an environment.
-                    </ul>
+                  </li>
+                  <li>
+                    <strong>Self-Supervised Learning</strong>
+                    <span>Learning robust representations from large datasets that transfer to downstream tasks with less supervision.</span>
+                  </li>
+                  <li>
+                    <strong>World Models</strong>
+                    <span>Building models that can understand an environment, plan useful actions, and reason about possible outcomes.</span>
+                  </li>
                 </ul>
-                  
-                </p>
               </td>
             </tr>
           </tbody></table>
 
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <table class="home-section"><tbody>
             <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
                 <div class="section-heading-row">
@@ -238,7 +126,7 @@ layout: null
           </tbody></table>
           
           <!-- Tabbed Section -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <table class="home-section" id="updates"><tbody>
             <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
                 <h2>Updates</h2>
@@ -280,8 +168,8 @@ layout: null
                   
                   <!-- Talks & Webinars Tab Content -->
                   <div id="talks" class="tab-content">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
-                      <div style="width: 48%;">
+                    <div class="talk-columns">
+                      <div class="talk-column">
                         <h3>My Talks & Presentations</h3>
                         
                         <h4>In-person Talks</h4>
@@ -415,7 +303,7 @@ layout: null
                         </div>
                       </div>
                       
-                      <div style="width: 48%;">
+                      <div class="talk-column">
                         <h3>Hosted Talks at Cohere Labs Community (Selected only)</h3>
                         <p>As a community lead at Cohere Labs Community, I've hosted over 50 sessions inviting guest speakers from Stanford, MIT, Google, UC Berkeley, Allen Institute of AI, and other top institutions to present their research. Below are some of the most popular talks:</p>
                         <p>For the complete list of hosted talks, visit the <a href="https://www.youtube.com/playlist?list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll">Cohere Labs Community YouTube Playlist</a>.</p>
@@ -589,7 +477,7 @@ layout: null
             </tr>
           </tbody></table>
 
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+          <table class="home-section" id="publications">
             <tbody>
               <tr>
                 <td style="padding:20px;width:100%;vertical-align:middle">
@@ -645,51 +533,29 @@ layout: null
             </tbody>
           </table>
 
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <table class="home-section"><tbody>
             <tr>
             <td style="padding:20px;width:100%;vertical-align:middle">
               <h2>Favourite Papers</h2>
               <p>
                 List of papers I really admire (and hope to do similar impactful work).
               </p>
-            <li>
-              <b>CLIP</b>, <a href="https://arxiv.org/abs/2103.00020">abs</a>
-            </li>
-            <li>
-              <b>World Models</b>, <a href="https://arxiv.org/abs/1803.10122">abs</a>
-            </li>
-            <li>
-              <b>JEPA</b>, <a href="https://arxiv.org/abs/2301.08243">abs</a>
-            </li>
-            <li>
-              <b>SimCLR</b>,
-              <a href="https://arxiv.org/abs/2002.05709">abs</a>
-            </li>
-            <li>
-              <b>Vision Transformers Need Registers</b>,
-              <a href="https://arxiv.org/abs/2309.16588">abs</a>
-            </li>
-            <li>
-              <b>Pali-3</b>,
-              <a href="https://arxiv.org/abs/2310.09199">abs</a>
-              
-            </li>
-            <li>
-              <b>Learning by Distilling Context</b>,
-              <a href="https://arxiv.org/abs/2209.15189">abs</a>
-            </li>
-            <li>
-              <b>SigLIP</b>,
-              <a href="https://arxiv.org/abs/2303.15343">abs</a>
-            </li>
-            <li><b>GILL: Generating Images with Multimodal Language Models</b>,
-              <a href="https://arxiv.org/abs/2305.17216">abs</a>
-            </li>
+              <ul class="paper-list">
+                <li><b>CLIP</b> &middot; <a href="https://arxiv.org/abs/2103.00020">paper</a></li>
+                <li><b>World Models</b> &middot; <a href="https://arxiv.org/abs/1803.10122">paper</a></li>
+                <li><b>JEPA</b> &middot; <a href="https://arxiv.org/abs/2301.08243">paper</a></li>
+                <li><b>SimCLR</b> &middot; <a href="https://arxiv.org/abs/2002.05709">paper</a></li>
+                <li><b>Vision Transformers Need Registers</b> &middot; <a href="https://arxiv.org/abs/2309.16588">paper</a></li>
+                <li><b>Pali-3</b> &middot; <a href="https://arxiv.org/abs/2310.09199">paper</a></li>
+                <li><b>Learning by Distilling Context</b> &middot; <a href="https://arxiv.org/abs/2209.15189">paper</a></li>
+                <li><b>SigLIP</b> &middot; <a href="https://arxiv.org/abs/2303.15343">paper</a></li>
+                <li><b>GILL: Generating Images with Multimodal Language Models</b> &middot; <a href="https://arxiv.org/abs/2305.17216">paper</a></li>
+              </ul>
             </td>
             </tr>
           </tbody></table>
           
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <table class="site-footer"><tbody>
             <tr>
               <td style="padding:0px">
                 <br>
