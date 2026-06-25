@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "self-supervised-learning-summary-of-modern-self-supervised-learning.md",
+                "file": "Welcome.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "self-supervised-learning-summary-of-modern-self-supervised-learning"
+              "title": "Welcome"
             }
           }
         ]
@@ -185,6 +185,7 @@
   },
   "active": "b0c85c52b7172063",
   "lastOpenFiles": [
+    "self-supervised-learning-summary-of-modern-self-supervised-learning.md",
     "Welcome.md"
   ]
 }
