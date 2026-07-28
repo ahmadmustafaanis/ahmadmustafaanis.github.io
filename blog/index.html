@@ -1,7 +1,8 @@
 ---
 layout: null
 title: Writing
-description: Research notes, technical explainers, and ideas by Ahmad Mustafa Anis.
+seo_title: AI Research Notes by Ahmad Mustafa Anis
+description: Research notes on self-supervised learning, computer vision, world models, and AI engineering by Pakistani AI researcher Ahmad Mustafa Anis.
 permalink: /blog/
 ---
 <!DOCTYPE html>
@@ -9,10 +10,10 @@ permalink: /blog/
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.title }} | {{ site.title }}</title>
-    <meta name="author" content="Ahmad Mustafa Anis">
-    <meta name="description" content="{{ page.description }}">
-    <link rel="canonical" href="{{ page.url | absolute_url }}">
+{% include seo-meta.html %}
+    <meta name="theme-color" content="#f4f0e8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" href="{{ '/images/favicon/favicon.ico' | relative_url }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ '/stylesheet.css' | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}">
   </head>

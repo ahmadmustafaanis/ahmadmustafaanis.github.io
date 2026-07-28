@@ -1,0 +1,84 @@
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "{{ '/' | absolute_url }}#website",
+          "url": "{{ '/' | absolute_url }}",
+          "name": "Ahmad Mustafa Anis",
+          "alternateName": "Ahmad Anis",
+          "description": {{ site.description | jsonify }},
+          "inLanguage": "en-US",
+          "creator": { "@id": "{{ '/' | absolute_url }}#person" }
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "{{ '/' | absolute_url }}#profile",
+          "url": "{{ '/' | absolute_url }}",
+          "name": "Ahmad Mustafa Anis | AI Researcher from Pakistan at CMU",
+          "description": {{ site.description | jsonify }},
+          "dateModified": "2026-07-28",
+          "isPartOf": { "@id": "{{ '/' | absolute_url }}#website" },
+          "mainEntity": { "@id": "{{ '/' | absolute_url }}#person" }
+        },
+        {
+          "@type": "Person",
+          "@id": "{{ '/' | absolute_url }}#person",
+          "name": "Ahmad Mustafa Anis",
+          "alternateName": "Ahmad Anis",
+          "givenName": "Ahmad Mustafa",
+          "familyName": "Anis",
+          "url": "{{ '/' | absolute_url }}",
+          "description": {{ site.description | jsonify }},
+          "image": {
+            "@type": "ImageObject",
+            "url": "{{ '/images/me3.jpeg' | absolute_url }}",
+            "contentUrl": "{{ '/images/me3.jpeg' | absolute_url }}",
+            "width": 3024,
+            "height": 2903,
+            "caption": "Ahmad Mustafa Anis"
+          },
+          "jobTitle": [
+            "AI Researcher",
+            "Master's Student in AI Engineering"
+          ],
+          "nationality": {
+            "@type": "Country",
+            "name": "Pakistan"
+          },
+          "affiliation": {
+            "@type": "CollegeOrUniversity",
+            "name": "Carnegie Mellon University",
+            "url": "https://www.cmu.edu/"
+          },
+          "memberOf": {
+            "@type": "Organization",
+            "name": "Cohere Labs",
+            "url": "https://cohere.for.ai/"
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "International Islamic University Islamabad",
+            "url": "https://www.iiu.edu.pk/"
+          },
+          "knowsAbout": [
+            "Artificial Intelligence",
+            "Self-Supervised Learning",
+            "Computer Vision",
+            "AI Engineering",
+            "Visual Representation Learning",
+            "World Models"
+          ],
+          "sameAs": [
+            "https://scholar.google.com/citations?user=58X2MYsAAAAJ&hl=en",
+            "https://github.com/ahmadmustafaanis",
+            "https://huggingface.co/AhmadMustafa",
+            "https://www.linkedin.com/in/ahmad-anis/",
+            "https://x.com/AhmadMustafaAn1",
+            "https://medium.com/@ahmadanis5050"
+          ]
+        }
+      ]
+    }
+    </script>

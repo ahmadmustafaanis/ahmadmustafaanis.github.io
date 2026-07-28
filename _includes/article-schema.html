@@ -1,0 +1,63 @@
+{% assign article_description = page.description | default: page.excerpt | strip_html | strip_newlines | normalize_whitespace | truncate: 160 %}
+{% assign article_modified = page.last_modified_at | default: page.date %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "{{ page.url | absolute_url }}#article",
+          "url": "{{ page.url | absolute_url }}",
+          "headline": {{ page.title | jsonify }},
+          "description": {{ article_description | jsonify }},
+          "datePublished": "{{ page.date | date_to_xmlschema }}",
+          "dateModified": "{{ article_modified | date_to_xmlschema }}",
+          "inLanguage": "en-US",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ page.url | absolute_url }}"
+          },
+          "author": { "@id": "{{ '/' | absolute_url }}#person" },
+          "publisher": { "@id": "{{ '/' | absolute_url }}#person" }{% if page.topic %},
+          "keywords": {{ page.topic | jsonify }}{% endif %}{% if page.image %},
+          "image": {{ page.image | absolute_url | jsonify }}{% endif %}
+        },
+        {
+          "@type": "Person",
+          "@id": "{{ '/' | absolute_url }}#person",
+          "name": "Ahmad Mustafa Anis",
+          "url": "{{ '/' | absolute_url }}",
+          "sameAs": [
+            "https://scholar.google.com/citations?user=58X2MYsAAAAJ&hl=en",
+            "https://github.com/ahmadmustafaanis",
+            "https://huggingface.co/AhmadMustafa",
+            "https://www.linkedin.com/in/ahmad-anis/",
+            "https://x.com/AhmadMustafaAn1"
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "{{ '/' | absolute_url }}"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Writing",
+              "item": "{{ '/blog/' | absolute_url }}"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": {{ page.title | jsonify }},
+              "item": "{{ page.url | absolute_url }}"
+            }
+          ]
+        }
+      ]
+    }
+    </script>

@@ -1,0 +1,33 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>{{ '/' | absolute_url }}</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>{{ '/images/me3.jpeg' | absolute_url }}</image:loc>
+      <image:caption>Ahmad Mustafa Anis, AI researcher from Pakistan at Carnegie Mellon University</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>{{ '/blog/' | absolute_url }}</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+{% assign sitemap_blogs = site.blogs | sort: 'date' | reverse %}
+{% for post in sitemap_blogs %}
+  <url>
+    <loc>{{ post.url | absolute_url }}</loc>
+    <lastmod>{{ post.last_modified_at | default: post.date | date: '%Y-%m-%d' }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+{% endfor %}
+</urlset>

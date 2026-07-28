@@ -1,0 +1,45 @@
+{% assign seo_description = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | normalize_whitespace | truncate: 160 %}
+{% if page.url == '/' %}
+  {% assign seo_title = page.seo_title | default: site.seo_title | default: site.title %}
+  {% assign og_type = 'profile' %}
+{% elsif page.collection == 'blogs' or page.layout == 'blog' %}
+  {% assign page_heading = page.seo_title | default: page.title %}
+  {% assign seo_title = page_heading | append: ' | ' | append: site.title %}
+  {% assign og_type = 'article' %}
+{% else %}
+  {% assign page_heading = page.seo_title | default: page.title %}
+  {% assign seo_title = page_heading | append: ' | ' | append: site.title %}
+  {% assign og_type = 'website' %}
+{% endif %}
+{% assign seo_image = page.image | default: site.social_image %}
+    <title>{{ seo_title | escape }}</title>
+    <meta name="author" content="{{ page.author | default: site.title | escape }}">
+    <meta name="description" content="{{ seo_description | escape }}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+    <meta property="og:type" content="{{ og_type }}">
+    <meta property="og:site_name" content="{{ site.title | escape }}">
+    <meta property="og:title" content="{{ seo_title | escape }}">
+    <meta property="og:description" content="{{ seo_description | escape }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="{{ seo_image | absolute_url }}">
+    <meta property="og:image:alt" content="{{ page.image_alt | default: 'Ahmad Mustafa Anis, AI researcher from Pakistan at Carnegie Mellon University' | escape }}">
+{% unless page.image %}
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="3024">
+    <meta property="og:image:height" content="2903">
+{% endunless %}
+{% if og_type == 'profile' %}
+    <meta property="profile:first_name" content="Ahmad Mustafa">
+    <meta property="profile:last_name" content="Anis">
+    <meta property="profile:username" content="AhmadMustafaAn1">
+{% endif %}
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@{{ site.twitter_username }}">
+    <meta name="twitter:title" content="{{ seo_title | escape }}">
+    <meta name="twitter:description" content="{{ seo_description | escape }}">
+    <meta name="twitter:image" content="{{ seo_image | absolute_url }}">
+    <meta name="twitter:image:alt" content="{{ page.image_alt | default: 'Ahmad Mustafa Anis, AI researcher from Pakistan at Carnegie Mellon University' | escape }}">
