@@ -21,9 +21,9 @@ layout: null
         <a class="blog-brand" href="{{ '/' | relative_url }}">Ahmad Mustafa Anis</a>
         <div class="blog-nav-links">
           <a href="#research">Research</a>
-          <a href="#updates">Updates</a>
           <a href="#publications">Publications</a>
           <a href="{{ '/blog/' | relative_url }}">Writing</a>
+          <a href="resume/Ahmad_Resume.pdf">Resume</a>
         </div>
       </nav>
     </header>
@@ -31,58 +31,69 @@ layout: null
     <table class="home-page"><tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
-          <table class="hero-section"><tbody>
-            <tr style="padding:0px">
-              <td class="hero-copy">
-                <span class="blog-kicker">Master's student · AI Engineering · CMU</span>
-                <h1 class="name">
-                  Ahmad Mustafa Anis
-                </h1>
-                <div class="current-focus">
-                  <span>Current research</span>
-                  <p>Self-supervised learning for computer vision, advised by <a href="https://www.cmu.edu/dietrich/psychology/directory/core-training-faculty/tarr-michael.html">Michael Tarr</a>.</p>
-                </div>
-                <p>I'm pursuing a Master of Science in Artificial Intelligence Engineering at <a href="https://engineering.cmu.edu/education/graduate-studies/programs/ms-aie.html">Carnegie Mellon University</a>. My research explores how visual models can learn robust, transferable representations from large-scale unlabeled data.</p>
-                <p>Before CMU, I worked as a Deep Learning Computer Vision Engineer at <a href="https://roll.ai">Roll.ai</a> and was a <a href="https://fatimafellowship.com">Fatima Fellow</a> advised by <a href="https://xiaoiker.github.io">Dr. Wei Peng</a> at Stanford University. I completed my bachelor's degree in Computer Science at International Islamic University Pakistan, advised by <a href="https://scholar.google.com.pk/citations?user=XiR3-tMAAAAJ&hl=en">Dr. Muhammad Nadeem</a>.</p>
-                <p>
-                  I serve as a community lead (For Geo-Regional Asia) at <a href="https://cohere.for.ai">Cohere Labs Community</a>, led by <a href="https://twitter.com/sarahookr">Sara Hooker</a>. In this role, I've hosted over 50 researchers from Asia to present their work at <a href="https://www.youtube.com/playlist?list=PLLalUvky4CLJKDaiWCumhsJpHNDhZeVll">Cohere Labs Community</a>, completed a study group on <a href="https://atcold.github.io/NYU-DLSP21/">NYU Deep Learning</a> by Yann LeCun.
-                </p>
+          <section class="hero-section" aria-labelledby="hero-title">
+            <div class="hero-copy">
+              <div class="hero-status">
+                <span aria-hidden="true"></span>
+                Carnegie Mellon · M.S. AI Engineering
+              </div>
+              <h1 class="name" id="hero-title">I study how machines <em>learn to see</em>—without labels.</h1>
+              <p class="hero-lede">I'm Ahmad, a master's student at Carnegie Mellon University, advised by <a href="https://www.cmu.edu/dietrich/psychology/directory/core-training-faculty/tarr-michael.html">Michael Tarr</a>. I research self-supervised learning for visual intelligence.</p>
+              <div class="hero-actions">
+                <a class="hero-action-primary" href="#research">Explore my research</a>
+                <a class="hero-action-secondary" href="#publications">Selected work <span aria-hidden="true">↗</span></a>
+              </div>
+              <div class="profile-links" aria-label="Profile links">
+                <a href="mailto:ahmadanis5050@gmail.com">Email</a>
+                <a href="https://scholar.google.com/citations?user=58X2MYsAAAAJ&amp;hl=en">Google Scholar</a>
+                <a href="https://github.com/ahmadmustafaanis">GitHub</a>
+                <a href="https://www.linkedin.com/in/ahmad-anis/">LinkedIn</a>
+              </div>
+            </div>
 
-                <!-- <p>
-                  I am looking for PhD positions in CS for F-25. If my profile interests you, feel free to reach out.
-                </p> -->
+            <div class="hero-visual" aria-hidden="true">
+              <div class="visual-glow"></div>
+              <div class="ssl-scene">
+                <div class="ssl-orbit ssl-orbit-one"></div>
+                <div class="ssl-orbit ssl-orbit-two"></div>
+                <div class="ssl-orbit ssl-orbit-three"></div>
+                <div class="ssl-core"><span>SSL</span></div>
+                <div class="signal signal-data"><i></i>Unlabeled data</div>
+                <div class="signal signal-learn"><i></i>Representations</div>
+                <div class="signal signal-transfer"><i></i>Transfer</div>
+              </div>
+            </div>
+          </section>
 
-                <p>
-                See my Resume <a href="resume/Ahmad_Resume.pdf">here </a> (Updated Jul 2025).
-                </p>
+          <section class="profile-summary" aria-labelledby="profile-title">
+            <div class="profile-portrait-wrap">
+              <div class="portrait-depth"></div>
+              <img class="profile-photo" alt="Ahmad Mustafa Anis" src="images/me3.jpeg">
+              <span class="portrait-caption">Pittsburgh, PA · 2026</span>
+            </div>
+            <div class="profile-summary-copy">
+              <span class="blog-kicker">About</span>
+              <h2 id="profile-title">Research shaped by vision, learning, and real-world systems.</h2>
+              <p>I'm pursuing a Master of Science in Artificial Intelligence Engineering at <a href="https://engineering.cmu.edu/education/graduate-studies/programs/ms-aie.html">Carnegie Mellon University</a>. My work explores how visual models learn robust, transferable representations from large-scale unlabeled data.</p>
+              <p>Before CMU, I built computer-vision systems at <a href="https://roll.ai">Roll.ai</a> and was a <a href="https://fatimafellowship.com">Fatima Fellow</a> advised by <a href="https://xiaoiker.github.io">Dr. Wei Peng</a> at Stanford. I also lead the Geo-Regional Asia community at <a href="https://cohere.for.ai">Cohere Labs</a>, where I've hosted more than 50 researchers.</p>
+              <a class="text-link" href="resume/Ahmad_Resume.pdf">View résumé <span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
 
-                <p class="profile-links">
-                  <a href="mailto:ahmadanis5050@gmail.com">Email</a>
-                  <a href="https://twitter.com/AhmadMustafaAn1">Twitter</a>
-                  <a href="https://scholar.google.com/citations?user=58X2MYsAAAAJ&hl=en">Google Scholar</a>
-                  <a href="http://huggingface.co/AhmadMustafa">Hugging Face</a>
-                  <a href="https://github.com/ahmadmustafaanis">Github</a>
-                  <a href="https://medium.com/@ahmadanis5050">Medium</a>
-                  <a href="https://www.linkedin.com/in/ahmad-anis/">Linkedin</a>
-                  <a href="{{ '/blog/' | relative_url }}">Blog</a>
-                </p>
-              </td>
-              <td class="hero-photo-cell">
-                <a href="images/me3.jpeg"><img class="profile-photo" alt="Ahmad Mustafa Anis" src="images/me3.jpeg"></a>
-              </td>
-            </tr>
-          </tbody></table>
           <table class="home-section" id="research"><tbody>
               <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
-                <h2>Research</h2>
+                <span class="blog-kicker">Research direction</span>
+                <h2>Learning useful structure<br>from raw experience.</h2>
                 <p>My work centers on self-supervised learning for visual representation learning, alongside broader interests in multimodal reasoning and world models.</p>
                 <ul class="research-grid">
                   <li class="research-primary">
+                    <span class="research-index">01</span>
                     <strong>Self-Supervised Learning</strong>
                     <span>Learning robust visual representations from unlabeled data, with a focus on scalable methods that transfer across tasks and domains.</span>
                   </li>
                   <li>
+                    <span class="research-index">02</span>
                     <strong>Vision-Language Reasoning</strong>
                     <span>How well can models reason about images and video while remaining useful across cultures and languages?</span>
                     <ul>
@@ -91,6 +102,7 @@ layout: null
                     </ul>
                   </li>
                   <li>
+                    <span class="research-index">03</span>
                     <strong>World Models</strong>
                     <span>Building models that can understand an environment, plan useful actions, and reason about possible outcomes.</span>
                   </li>
@@ -131,17 +143,18 @@ layout: null
           <table class="home-section" id="updates"><tbody>
             <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
+                <span class="blog-kicker">Activity</span>
                 <h2>Updates</h2>
                 
                 <div class="tab-container">
-                  <div class="tab-buttons">
-                    <div class="tab-button active" onclick="openTab(event, 'news')">News</div>
-                    <div class="tab-button" onclick="openTab(event, 'talks')">Talks & Webinars</div>
-                    <div class="tab-button" onclick="openTab(event, 'fellowships')">Fellowships & Awards</div>
+                  <div class="tab-buttons" role="tablist" aria-label="Updates">
+                    <button class="tab-button active" type="button" role="tab" aria-selected="true" aria-controls="news" onclick="openTab(event, 'news')">News</button>
+                    <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="talks" onclick="openTab(event, 'talks')">Talks &amp; Webinars</button>
+                    <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="fellowships" onclick="openTab(event, 'fellowships')">Fellowships &amp; Awards</button>
                   </div>
                   
                   <!-- News Tab Content -->
-                  <div id="news" class="tab-content active">
+                  <div id="news" class="tab-content active" role="tabpanel">
                     <ul style="padding-left: 20px;">
                       <li>[Mar 2026] Invited to serve as a reviewer for <b>EvalEval at ACL</b>.</li>
                       <li>[Mar 2026] Invited to serve as a reviewer for <b>Med Reasoner @ CVPR 2026</b>.</li>
@@ -169,7 +182,7 @@ layout: null
                   </div>
                   
                   <!-- Talks & Webinars Tab Content -->
-                  <div id="talks" class="tab-content">
+                  <div id="talks" class="tab-content" role="tabpanel">
                     <div class="talk-columns">
                       <div class="talk-column">
                         <h3>My Talks & Presentations</h3>
@@ -375,7 +388,7 @@ layout: null
                   </div>
                   
                   <!-- Fellowships & Awards Tab Content -->
-                  <div id="fellowships" class="tab-content">
+                  <div id="fellowships" class="tab-content" role="tabpanel">
                     <div class="fellowship-container">
                       <div class="fellowship-title">Pre-Doctoral AI Research Fellow - Fatima Fellowship</div>
                       <div class="fellowship-date">September 2024 - Present</div>
@@ -468,11 +481,13 @@ layout: null
                     tabButtons = document.getElementsByClassName("tab-button");
                     for (i = 0; i < tabButtons.length; i++) {
                       tabButtons[i].classList.remove("active");
+                      tabButtons[i].setAttribute("aria-selected", "false");
                     }
                     
                     // Show the specific tab content and add "active" class to the button that opened the tab
                     document.getElementById(tabName).classList.add("active");
                     evt.currentTarget.classList.add("active");
+                    evt.currentTarget.setAttribute("aria-selected", "true");
                   }
                 </script>
               </td>
@@ -483,6 +498,7 @@ layout: null
             <tbody>
               <tr>
                 <td style="padding:20px;width:100%;vertical-align:middle">
+                  <span class="blog-kicker">Selected work</span>
                   <h2>Publications</h2>
 
                     <div class="publication-container">
@@ -538,6 +554,7 @@ layout: null
           <table class="home-section"><tbody>
             <tr>
             <td style="padding:20px;width:100%;vertical-align:middle">
+              <span class="blog-kicker">Influences</span>
               <h2>Favourite Papers</h2>
               <p>
                 List of papers I really admire (and hope to do similar impactful work).
