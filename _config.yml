@@ -2,7 +2,7 @@ title: Ahmad Mustafa Anis
 description: Ahmad Mustafa Anis is a master's student in AI Engineering at Carnegie Mellon University, advised by Michael Tarr and working on self-supervised learning.
 url: "https://ahmadmustafaanis.github.io"
 baseurl: ""
-asset_version: "20260728-6"
+asset_version: "20260728-7"
 
 markdown: kramdown
 kramdown:

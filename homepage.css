@@ -106,6 +106,7 @@
 }
 
 .home-body .hero-section {
+  position: relative;
   display: grid;
   min-height: 720px;
   grid-template-columns: minmax(0, 1.42fr) minmax(320px, 0.58fr);
@@ -117,6 +118,74 @@
   border-radius: 0;
   background: transparent;
   box-shadow: none;
+  isolation: isolate;
+}
+
+.hero-depth-object {
+  position: absolute;
+  z-index: 0;
+  top: 49%;
+  left: 58%;
+  width: 390px;
+  height: 390px;
+  opacity: 0.52;
+  perspective: 900px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.depth-shell {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: depthDrift 22s ease-in-out infinite;
+}
+
+.depth-ring {
+  position: absolute;
+  inset: 13%;
+  border: 1px solid rgba(34, 63, 95, 0.16);
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+
+.depth-ring-one {
+  transform: rotateX(68deg);
+}
+
+.depth-ring-two {
+  transform: rotateY(68deg);
+}
+
+.depth-ring-three {
+  inset: 23%;
+  border-color: rgba(34, 63, 95, 0.11);
+  transform: rotateX(52deg) rotateY(46deg);
+}
+
+.depth-ring-accent {
+  inset: 34%;
+  border-color: rgba(196, 18, 48, 0.18);
+  transform: rotateX(74deg) rotateY(-34deg);
+}
+
+.depth-point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  background: rgba(196, 18, 48, 0.55);
+  transform: translate(-50%, -50%) translateZ(34px);
+}
+
+@keyframes depthDrift {
+  0%, 100% {
+    transform: rotateX(7deg) rotateY(-11deg) rotateZ(-2deg);
+  }
+  50% {
+    transform: rotateX(-5deg) rotateY(12deg) rotateZ(5deg);
+  }
 }
 
 .home-body .hero-copy {
@@ -706,6 +775,13 @@
 }
 
 @media (max-width: 960px) {
+  .hero-depth-object {
+    left: 57%;
+    width: 310px;
+    height: 310px;
+    opacity: 0.4;
+  }
+
   .home-body .hero-section {
     min-height: 650px;
     grid-template-columns: minmax(0, 1fr) minmax(240px, 310px);
@@ -747,6 +823,14 @@
     align-items: stretch;
     gap: 16px;
     padding-bottom: 80px;
+  }
+
+  .hero-depth-object {
+    top: 66%;
+    left: 78%;
+    width: 260px;
+    height: 260px;
+    opacity: 0.28;
   }
 
   .home-body .hero-copy {
@@ -828,5 +912,11 @@
     gap: 22px;
     overflow-x: auto;
     white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .depth-shell {
+    animation: none;
   }
 }
