@@ -128,7 +128,7 @@
   left: 58%;
   width: 390px;
   height: 390px;
-  opacity: 0.52;
+  opacity: 0.62;
   perspective: 900px;
   pointer-events: none;
   transform: translate(-50%, -50%);
@@ -779,7 +779,7 @@
     left: 57%;
     width: 310px;
     height: 310px;
-    opacity: 0.4;
+    opacity: 0.48;
   }
 
   .home-body .hero-section {
@@ -830,7 +830,7 @@
     left: 78%;
     width: 260px;
     height: 260px;
-    opacity: 0.28;
+    opacity: 0.34;
   }
 
   .home-body .hero-copy {
