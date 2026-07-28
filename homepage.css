@@ -124,43 +124,42 @@
 }
 
 .home-body .hero-status {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  display: grid;
+  align-items: start;
+  gap: 7px;
   margin-bottom: 38px;
-  color: var(--ink-soft);
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
   font-weight: 400;
+  line-height: 1.45;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .home-body .hero-status span {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--cmu-red);
+  display: block;
   font-family: inherit;
+  white-space: normal;
+}
+
+.home-body .hero-status .hero-institution {
+  color: var(--cmu-red);
   font-weight: 500;
 }
 
-.home-body .hero-status span::after {
-  width: 28px;
-  height: 1px;
-  background: var(--rule);
-  content: '';
+.home-body .hero-status .hero-program {
+  color: var(--ink-soft);
 }
 
 .home-body .name {
-  max-width: 850px;
+  max-width: 720px;
   margin: 0 0 32px;
   color: var(--ink);
   font-family: 'Newsreader', Georgia, serif;
-  font-size: clamp(64px, 7.4vw, 102px);
+  font-size: clamp(54px, 5.5vw, 74px);
   font-weight: 500;
-  line-height: 0.94;
-  letter-spacing: -0.055em;
+  line-height: 1;
+  letter-spacing: -0.045em;
 }
 
 .home-body .hero-lede {
@@ -701,7 +700,7 @@
   }
 
   .home-body .name {
-    font-size: clamp(58px, 8vw, 80px);
+    font-size: clamp(50px, 7vw, 66px);
   }
 
   .home-body .profile-links {
@@ -741,18 +740,8 @@
     padding: 72px 0 42px !important;
   }
 
-  .home-body .hero-status {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .home-body .hero-status span::after {
-    display: none;
-  }
-
   .home-body .name {
-    font-size: clamp(56px, 16vw, 78px);
+    font-size: clamp(48px, 13vw, 64px);
   }
 
   .hero-portrait-wrap {
@@ -801,7 +790,7 @@
 
 @media (max-width: 430px) {
   .home-body .name {
-    font-size: 52px;
+    font-size: 48px;
   }
 
   .home-body .hero-lede {
