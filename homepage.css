@@ -485,7 +485,8 @@
 
 .home-body .research-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: none;
   gap: 16px;
   margin: 48px 0 0;
   padding: 0;
@@ -507,6 +508,9 @@
 }
 
 .home-body .research-grid li:hover {
+  border-color: var(--accent);
+  background: #f0f2ff;
+  color: var(--ink);
   box-shadow: 0 18px 40px rgba(30, 39, 75, 0.1);
   transform: translateY(-4px);
 }
@@ -527,9 +531,39 @@
 }
 
 .home-body .research-grid .research-primary {
+  grid-row: auto;
+  padding: 34px;
   border-color: var(--accent);
   background: var(--accent);
   color: #fff;
+}
+
+.home-body .research-grid .research-primary:hover {
+  border-color: var(--accent-dark);
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+.home-body .research-grid > .research-primary::after {
+  top: 28px;
+  right: 28px;
+  bottom: auto;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  content: '↗';
+  place-items: center;
+  font-size: 16px;
+  opacity: 0.55;
+}
+
+.home-body .research-grid > .research-primary .research-index {
+  margin-bottom: auto;
+  color: inherit;
 }
 
 .home-body .research-index {
