@@ -194,7 +194,14 @@
 }
 
 .home-body .hero-status span {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   font: inherit;
+  white-space: nowrap;
 }
 
 .home-body .hero-institution {
@@ -339,16 +346,25 @@
 }
 
 .home-body .portrait-caption {
+  position: static;
+  right: auto;
+  bottom: auto;
   display: flex;
+  width: auto;
+  height: auto;
   min-height: 48px;
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--muted);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  backdrop-filter: none;
 }
 
 .home-body .portrait-caption::after {
