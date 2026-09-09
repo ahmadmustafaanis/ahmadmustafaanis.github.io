@@ -21,6 +21,12 @@ permalink: /sitemap.xml
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>{{ '/story/' | absolute_url }}</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 {% assign sitemap_blogs = site.blogs | sort: 'date' | reverse %}
 {% for post in sitemap_blogs %}
   <url>
