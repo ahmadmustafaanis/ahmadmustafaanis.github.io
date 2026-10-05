@@ -1,189 +1,134 @@
 (() => {
   'use strict';
+  const M = window.Motion;
+  const animated = Boolean(M) && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.storyReady = true;
+  if (!animated) document.documentElement.classList.remove('motion');
+
   const chapters = [...document.querySelectorAll('.chapter')];
-  const stops = [...document.querySelectorAll('.journey-stops a')];
-  const dock = document.querySelector('.journey-dock');
-  const previous = document.getElementById('previous-chapter');
-  const next = document.getElementById('next-chapter');
-  const toggle = document.getElementById('reading-toggle');
+  const links = [...document.querySelectorAll('.story-index a')];
+  const nav = document.querySelector('.story-index');
+  const highlight = document.getElementById('index-highlight');
+  const progressBar = document.getElementById('progress-bar');
+  const railFill = document.getElementById('rail-fill');
   const number = document.getElementById('chapter-number');
   const name = document.getElementById('chapter-name');
-  const caption = document.getElementById('orbit-caption');
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const canvas = document.getElementById('universe-canvas');
-  const ctx = canvas.getContext('2d');
-  const colors = chapters.map(chapter => chapter.dataset.color.match(/../g).map(c => parseInt(c, 16)));
-  let active = -1, positions = [], reading = false, pending = false;
-  let animation = 0, lastFrame = 0, time = 0, width = 0, height = 0;
-  let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0, transition = 1;
-  let blendColor = [...colors[0]];
-  const TAU = Math.PI * 2;
-  const count = 1500;
-  let seed = 47;
-  const random = () => {
-    seed = (seed * 1664525 + 1013904223) >>> 0;
-    return seed / 4294967296;
-  };
-  const stars = Array.from({ length: 150 }, () => ({ x: random(), y: random(), size: .2 + random() * 1.05, alpha: .12 + random() * .45 }));
+  const ease = [0.22, 1, 0.36, 1];
+  const spring = { type: 'spring', stiffness: 380, damping: 34 };
+  let active = -1, pending = false;
 
-  // The same points travel between chapter-specific geometries.
-  const shapes = chapters.map((chapter, scene) => Array.from({ length: count }, (_, i) => {
-    const u = i / count, a = u * TAU, b = ((i * .61803398875) % 1) * TAU;
-    const phi = Math.acos(1 - 2 * u);
-    const sphere = [Math.sin(phi) * Math.cos(b), Math.sin(phi) * Math.sin(b), Math.cos(phi)];
-    if (scene === 0) {
-      const tube = .2 + .06 * Math.sin(a * 7);
-      return [(1 + tube * Math.cos(b)) * Math.cos(a), tube * Math.sin(b), (1 + tube * Math.cos(b)) * Math.sin(a)];
-    }
-    if (scene === 1) {
-      const x = (i % 30) / 15 - 1, z = Math.floor(i / 30) / 25 - 1;
-      return [x, Math.sin(x * 3 + z * 2) * .3, z];
-    }
-    if (scene === 2) {
-      const r = 1 + .1 * Math.sin(b * 6) * Math.sin(phi * 7);
-      return sphere.map(v => v * r);
-    }
-    if (scene === 3) {
-      const layer = i % 5, wave = a * 2 + layer * .5;
-      return [Math.cos(wave) * (.75 + layer * .075), (layer - 2) * .32 + Math.sin(wave * 3) * .05, Math.sin(wave) * (.75 + layer * .075)];
-    }
-    if (scene === 4) {
-      const angle = (i % 3) * TAU / 3;
-      return [sphere[0] * .38 + Math.cos(angle) * .72, sphere[1] * .38 + Math.sin(angle) * .55, sphere[2] * .38];
-    }
-    if (scene === 5) {
-      const angle = a * 3.4;
-      return [Math.cos(angle) * (.6 + u * .45), (u - .5) * 1.7, Math.sin(angle) * (.6 + u * .45)];
-    }
-    if (scene === 6) {
-      const x = u * 2.8 - 1.4, radius = .07 + Math.pow(Math.abs(x) / 1.4, 3) * .5;
-      return [x, Math.cos(b) * radius, Math.sin(b) * radius];
-    }
-    if (scene === 7) {
-      const band = Math.round(phi / .24) * .24;
-      return [Math.sin(band) * Math.cos(b), Math.cos(band), Math.sin(band) * Math.sin(b)];
-    }
-    if (scene === 8) {
-      const angle = a * 5, r = Math.sqrt(u) * 1.35;
-      return [Math.cos(angle) * r, (random() - .5) * .16, Math.sin(angle) * r];
-    }
-    if (scene === 9) {
-      const group = i % 3, x = Math.cos(a) * 1.1, y = Math.sin(a) * 1.1, z = Math.sin(b) * .07;
-      return group === 0 ? [x, y, z] : group === 1 ? [x, z, y] : [z, x, y];
-    }
-    if (scene === 10) {
-      const ring = i % 4;
-      return [Math.cos(a) * .85, (ring - 1.5) * .38 + Math.cos(b) * .025, Math.sin(a) * .85];
-    }
-    const r = .95 + .12 * Math.cos(b);
-    return [Math.cos(a) * r, Math.sin(a) * r, Math.sin(b) * .12];
-  }));
-  const points = shapes[0].map(p => [...p]);
-  let origins = points.map(p => [...p]);
+  // Swap text with a quick blur-out / blur-in, keeping only the latest value if changes overlap.
+  function morph(el, text) {
+    el.dataset.next = text;
+    if (!animated) { el.textContent = text; return; }
+    M.animate(el, { opacity: 0, y: -6, filter: 'blur(4px)' }, { duration: 0.16 }).then(() => {
+      el.textContent = el.dataset.next;
+      M.animate(el, { opacity: [0, 1], y: [6, 0], filter: ['blur(4px)', 'blur(0px)'] }, { duration: 0.32, ease });
+    });
+  }
 
-  function measure() {
-    positions = chapters.map(chapter => chapter.getBoundingClientRect().top + scrollY);
-    if (ctx) {
-      width = innerWidth; height = innerHeight;
-      const dpr = Math.min(devicePixelRatio || 1, 1.75);
-      canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    update(); wake();
+  function placeHighlight(instant) {
+    const link = links[active];
+    if (!link || !nav.offsetParent) return;
+    const y = link.getBoundingClientRect().top - nav.getBoundingClientRect().top;
+    const frame = { y, height: link.offsetHeight, opacity: 1 };
+    if (M) M.animate(highlight, frame, animated && !instant ? spring : { duration: 0 });
+    else Object.assign(highlight.style, { transform: `translateY(${y}px)`, height: `${frame.height}px`, opacity: 1 });
   }
 
   function setActive(index) {
     if (index === active) return;
+    const first = active === -1;
     active = index;
-    origins = points.map(p => [...p]);
-    transition = reducedMotion.matches ? 1 : 0;
-    document.documentElement.style.setProperty('--accent', '#' + chapters[index].dataset.color);
-    number.textContent = String(index).padStart(2, '0');
-    name.textContent = chapters[index].dataset.title;
-    caption.textContent = chapters[index].dataset.caption;
-    stops.forEach((stop, i) => {
-      if (i === index) stop.setAttribute('aria-current', 'step');
-      else stop.removeAttribute('aria-current');
-      stop.classList.toggle('visited', i < index);
+    links.forEach((link, i) => {
+      if (i === index) link.setAttribute('aria-current', 'step');
+      else link.removeAttribute('aria-current');
     });
-    previous.disabled = index === 0; next.disabled = index === chapters.length - 1;
-    wake();
+    morph(number, String(index).padStart(2, '0'));
+    morph(name, chapters[index].dataset.title);
+    placeHighlight(first);
   }
 
   function update() {
     pending = false;
-    const marker = scrollY + innerHeight * .47;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const progress = max > 0 ? Math.min(1, scrollY / max) : 0;
+    progressBar.style.transform = `scaleX(${progress})`;
+    railFill.style.transform = `scaleY(${progress})`;
+    const marker = innerHeight * 0.45;
     let index = 0;
-    positions.forEach((top, i) => { if (top <= marker) index = i; });
+    chapters.forEach((chapter, i) => { if (chapter.getBoundingClientRect().top <= marker) index = i; });
     setActive(index);
   }
 
   function goTo(index) {
     if (index < 0 || index >= chapters.length) return;
-    chapters[index].scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+    chapters[index].scrollIntoView({ behavior: animated ? 'smooth' : 'instant', block: 'start' });
     history.replaceState(null, '', '#' + chapters[index].id);
   }
 
-  function render(stamp) {
-    animation = 0;
-    if (!ctx || reading || document.hidden) return;
-    if (!reducedMotion.matches && stamp - lastFrame < 32) { animation = requestAnimationFrame(render); return; }
-    const dt = Math.min((stamp - lastFrame) / 1000 || .033, .06);
-    lastFrame = stamp;
-    if (!reducedMotion.matches) time += dt;
-    transition = Math.min(1, transition + dt * .9);
-    const ease = transition * transition * (3 - 2 * transition);
-    const target = shapes[Math.max(0, active)], color = colors[Math.max(0, active)];
-    blendColor = blendColor.map((c, i) => reducedMotion.matches ? color[i] : c + (color[i] - c) * .06);
-    const rgb = blendColor.map(Math.round).join(',');
-    const small = width <= 760;
-    const centerX = width * (small ? .64 : .77), centerY = height * (small ? .27 : .46);
-    const scale = Math.min(width * (small ? .34 : .255), height * (small ? .245 : .36));
-    mouseX += (targetX - mouseX) * .035; mouseY += (targetY - mouseY) * .035;
-    const angleY = time * .07 + mouseX * .13, angleX = -.43 + mouseY * .1;
-    const cy = Math.cos(angleY), sy = Math.sin(angleY), cx = Math.cos(angleX), sx = Math.sin(angleX);
-    ctx.clearRect(0, 0, width, height);
-    const glow = ctx.createRadialGradient(centerX, centerY, scale * .1, centerX, centerY, scale * 1.65);
-    glow.addColorStop(0, `rgba(${rgb},.085)`); glow.addColorStop(.5, `rgba(${rgb},.045)`); glow.addColorStop(1, `rgba(${rgb},0)`);
-    ctx.fillStyle = glow; ctx.fillRect(0, 0, width, height);
-    stars.forEach(star => {
-      const x = (star.x * width + time * (star.size * .9) + mouseX * star.size * 8) % width;
-      const y = star.y * height + mouseY * star.size * 6;
-      ctx.fillStyle = `rgba(202,218,227,${star.alpha})`; ctx.fillRect(x, y, star.size, star.size);
+  // Wrap each word of a heading so it can blur in on its own; counters stay whole.
+  function splitWords(node) {
+    [...node.childNodes].forEach(child => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        const parts = child.textContent.split(/(\s+)/).filter(Boolean);
+        child.replaceWith(...parts.map(part => {
+          if (/^\s+$/.test(part)) return document.createTextNode(part);
+          const word = document.createElement('span');
+          word.className = 'word'; word.textContent = part;
+          return word;
+        }));
+      } else if (child.classList?.contains('count')) child.classList.add('word');
+      else if (child.nodeType === Node.ELEMENT_NODE) splitWords(child);
     });
-    const projected = points.map((point, i) => {
-      for (let axis = 0; axis < 3; axis++) point[axis] = origins[i][axis] + (target[i][axis] - origins[i][axis]) * ease;
-      const x = point[0] * cy - point[2] * sy, z = point[0] * sy + point[2] * cy;
-      const y = point[1] * cx - z * sx, depth = point[1] * sx + z * cx;
-      const perspective = 3.5 / (3.5 + depth);
-      return { x: centerX + (x * .966 - y * .259) * scale * perspective, y: centerY + (x * .259 + y * .966) * scale * perspective, z: depth, alpha: Math.max(.12, .63 - depth * .28), size: Math.max(.55, 1.15 - depth * .3) };
-    });
-    ctx.lineWidth = .55;
-    projected.forEach((p, i) => {
-      if (i % 3 !== 0) return;
-      const q = projected[(i + 17) % count], distance = Math.hypot(p.x - q.x, p.y - q.y);
-      if (distance < scale * .19 && distance > 2) {
-        ctx.strokeStyle = `rgba(${rgb},${(1 - distance / (scale * .19)) * .11})`;
-        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
-      }
-    });
-    projected.sort((a, b) => b.z - a.z);
-    projected.forEach(p => {
-      ctx.fillStyle = `rgba(${rgb},${p.alpha})`;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, TAU); ctx.fill();
-    });
-    ctx.save(); ctx.translate(centerX, centerY); ctx.rotate(-.27);
-    ctx.strokeStyle = `rgba(${rgb},.14)`; ctx.lineWidth = .65; ctx.setLineDash([2, 6]);
-    ctx.beginPath(); ctx.ellipse(0, 0, scale * 1.52, scale * .66, 0, .3, 5.8); ctx.stroke(); ctx.restore();
-    if (!reducedMotion.matches) animation = requestAnimationFrame(render);
   }
 
-  function wake() {
-    if (ctx && !animation && !reading && !document.hidden) animation = requestAnimationFrame(render);
+  function countUp(el, delay) {
+    const target = Number(el.dataset.to), suffix = el.dataset.suffix || '';
+    const format = value => Math.round(value).toLocaleString('en-US') + suffix;
+    el.textContent = format(0);
+    M.animate(0, target, { duration: 1.6, delay, ease: [0.16, 1, 0.3, 1], onUpdate: v => { el.textContent = format(v); } })
+      .then(() => { el.textContent = format(target); });
   }
 
-  previous.addEventListener('click', () => goTo(active - 1));
-  next.addEventListener('click', () => goTo(active + 1));
+  function reveal(chapter) {
+    const eyebrow = chapter.querySelector('.eyebrow');
+    const heading = chapter.querySelector('h1, h2');
+    const words = heading.querySelectorAll('.word');
+    const blocks = chapter.querySelectorAll('[data-reveal]');
+    const settled = 0.15 + words.length * 0.06;
+
+    M.animate(eyebrow, { opacity: [0, 1], y: [10, 0] }, { duration: 0.5, ease });
+    heading.style.opacity = 1;
+    M.animate(words, { opacity: [0, 1], y: [22, 0], filter: ['blur(10px)', 'blur(0px)'] }, { duration: 0.8, ease, delay: M.stagger(0.06, { startDelay: 0.15 }) });
+    setTimeout(() => heading.querySelectorAll('em').forEach(em => em.classList.add('lit')), (settled + 0.25) * 1000);
+    M.animate(blocks, { opacity: [0, 1], y: [16, 0], filter: ['blur(6px)', 'blur(0px)'] }, { duration: 0.7, ease, delay: M.stagger(0.12, { startDelay: settled }) });
+    chapter.querySelectorAll('.count').forEach(el => countUp(el, settled));
+
+    const route = chapter.querySelector('.route');
+    if (route) {
+      const start = settled + 0.3;
+      M.animate(route.querySelector('.route-track'), { strokeDashoffset: [1, 0] }, { duration: 1.8, delay: start, ease: [0.65, 0, 0.35, 1] });
+      M.animate(route.querySelector('.route-end'), { opacity: [0, 1], scale: [0, 1] }, { ...spring, delay: start + 1.6 });
+      M.animate(route.querySelector('.route-traveller'), { opacity: [0, 1] }, { duration: 0.4, delay: start + 1.9 });
+    }
+    chapter.querySelectorAll('.tally path').forEach((path, i) => {
+      M.animate(path, { strokeDashoffset: [1, 0] }, { duration: 0.5, delay: settled + 0.5 + i * 0.35, ease });
+    });
+  }
+
+  if (animated) {
+    chapters.forEach(chapter => {
+      splitWords(chapter.querySelector('h1, h2'));
+      let shown = false;
+      M.inView(chapter, () => {
+        if (shown) return;
+        shown = true;
+        reveal(chapter);
+      }, { margin: '0px 0px -20% 0px' });
+    });
+  }
+
   document.addEventListener('keydown', event => {
     if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName) || event.target.isContentEditable) return;
     if (event.key === 'ArrowRight') { event.preventDefault(); goTo(active + 1); }
@@ -192,27 +137,7 @@
   addEventListener('scroll', () => {
     if (!pending) { pending = true; requestAnimationFrame(update); }
   }, { passive: true });
-  addEventListener('resize', measure);
-  addEventListener('pointermove', event => {
-    if (reducedMotion.matches || event.pointerType !== 'mouse') return;
-    targetX = event.clientX / innerWidth - .5; targetY = event.clientY / innerHeight - .5;
-  }, { passive: true });
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { cancelAnimationFrame(animation); animation = 0; }
-    else wake();
-  });
-  toggle.addEventListener('click', () => {
-    const chapter = chapters[active];
-    reading = !reading;
-    document.body.classList.toggle('reading-view', reading);
-    toggle.setAttribute('aria-pressed', String(reading));
-    toggle.textContent = reading ? 'Journey view' : 'Reading view';
-    measure(); chapter.scrollIntoView({ behavior: 'instant', block: 'start' }); update();
-  });
-  reducedMotion.addEventListener('change', () => { transition = 1; measure(); });
-  if (ctx) document.body.classList.add('has-canvas');
-  dock.hidden = false; toggle.hidden = false;
-  measure();
-  if (document.fonts) document.fonts.ready.then(measure);
-  addEventListener('load', measure, { once: true });
+  addEventListener('resize', () => { update(); placeHighlight(true); });
+  update();
+  if (document.fonts) document.fonts.ready.then(() => placeHighlight(true));
 })();

@@ -11,211 +11,228 @@ permalink: /story/
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 {% include seo-meta.html %}
-  <meta name="theme-color" content="#07090d">
+  <meta name="theme-color" content="#faf9f6">
   <link rel="icon" href="{{ '/images/favicon/favicon.ico' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/story.css' | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}">
+  <script>
+    // Hide animated elements before first paint; story.js reveals them, or this timer does if Motion never loads.
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+      setTimeout(() => { if (!window.storyReady) document.documentElement.classList.remove('motion'); }, 3000);
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/motion@14.0.0/dist/motion.js"></script>
   <script defer src="{{ '/story.js' | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}"></script>
 </head>
 <body>
   <a class="skip-link" href="#beginning">Skip to my story</a>
-  <div class="universe" aria-hidden="true">
-    <canvas id="universe-canvas"></canvas>
-    <div class="universe-shade"></div>
-    <div class="universe-grain"></div>
-    <div class="orbit-label"><span class="orbit-cross">+</span><span id="orbit-caption">A game. An unexpected beginning.</span></div>
-  </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
   <header class="story-header">
     <a class="wordmark" href="{{ '/' | relative_url }}" aria-label="Ahmad Mustafa Anis, back to portfolio">ahmad<span>.</span></a>
-    <span class="header-note">A few things that got me here</span>
-    <div class="header-actions">
-      <button id="reading-toggle" type="button" aria-pressed="false" hidden>Reading view</button>
-      <a class="exit-link" href="{{ '/' | relative_url }}">Back to portfolio <span aria-hidden="true">↗</span></a>
-    </div>
+    <p class="chapter-counter" aria-hidden="true"><span id="chapter-number">00</span><span class="counter-total">/ 11</span><span id="chapter-name">Dota</span></p>
+    <a class="exit-link" href="{{ '/' | relative_url }}">Portfolio <span aria-hidden="true">↗</span></a>
   </header>
 
-  <main id="story">
-    <section class="chapter chapter-opening" id="beginning" data-title="Dota" data-color="ff865b" data-caption="A game. An unexpected beginning." aria-labelledby="title-0">
-      <div class="chapter-content">
-        <p class="eyebrow"><span class="live-dot"></span> Ahmad Mustafa Anis · Pakistan → Pittsburgh</p>
-        <h1 id="title-0">It started<br>with <em>Dota 2.</em></h1>
-        <div class="chapter-prose">
-          <p>I played a lot in high school. Enough to mess up my grades.</p>
-          <p>Later, watching a bot play the same game would get me into AI. But I didn’t know that yet.</p>
-        </div>
-        <a class="begin-link" href="#iiui">Here’s how it happened <span aria-hidden="true">↓</span></a>
-      </div>
-      <span class="scene-footnote">00 / The game before everything else</span>
-    </section>
+  <div class="layout">
+    <nav class="story-index" aria-label="Chapters">
+      <div class="index-rail" aria-hidden="true"><span id="rail-fill"></span></div>
+      <span class="index-highlight" id="index-highlight" aria-hidden="true"></span>
+      <ol>
+        <li><a href="#beginning"><span class="index-number">00</span>Dota</a></li>
+        <li><a href="#iiui"><span class="index-number">01</span>IIUI</a></li>
+        <li><a href="#openai"><span class="index-number">02</span>The bot</a></li>
+        <li><a href="#self-study"><span class="index-number">03</span>Self-study</a></li>
+        <li><a href="#first-job"><span class="index-number">04</span>First break</a></li>
+        <li><a href="#red-buffer"><span class="index-number">05</span>Red Buffer</a></li>
+        <li><a href="#umar"><span class="index-number">06</span>A reply</a></li>
+        <li><a href="#cohere"><span class="index-number">07</span>Cohere</a></li>
+        <li><a href="#community"><span class="index-number">08</span>85+ sessions</a></li>
+        <li><a href="#papers"><span class="index-number">09</span>Research</a></li>
+        <li><a href="#rejections"><span class="index-number">10</span>Four years</a></li>
+        <li><a href="#cmu"><span class="index-number">11</span>CMU</a></li>
+      </ol>
+    </nav>
 
-    <section class="chapter" id="iiui" data-title="IIUI" data-color="c6bcff" data-caption="IIUI · Computer Science · 2018–2022" aria-labelledby="title-1">
-      <div class="chapter-content">
-        <p class="eyebrow">01 · University</p>
-        <h2 id="title-1">I wanted to<br>make <em>games.</em></h2>
-        <div class="chapter-prose">
-          <p>I ended up at IIUI. It wasn’t known for its CS program, and there weren’t many resources for what I wanted to learn.</p>
-          <p>But I loved computer science. I loved the idea that I could make things.</p>
-          <p class="aside-note">I never actually made a game, by the way.</p>
+    <main id="story">
+      <section class="chapter chapter-opening" id="beginning" data-title="Dota" style="--hl: #ff865b" aria-labelledby="title-0">
+        <div class="chapter-content">
+          <p class="eyebrow"><span class="live-dot"></span> Ahmad Mustafa Anis · Pakistan → Pittsburgh</p>
+          <h1 id="title-0">It started<br>with <em>Dota 2.</em></h1>
+          <div class="chapter-prose" data-reveal>
+            <p>I played a lot in high school. Enough to mess up my grades.</p>
+            <p>Later, watching a bot play the same game would get me into AI. But I didn’t know that yet.</p>
+          </div>
+          <figure class="route" data-reveal aria-label="From Islamabad to Pittsburgh">
+            <svg viewBox="0 0 560 110" aria-hidden="true" focusable="false">
+              <path class="route-track" id="route-path" d="M14 92 C 170 -18, 390 -18, 546 92" pathLength="1"/>
+              <circle class="route-stop" cx="14" cy="92" r="5"/>
+              <circle class="route-stop route-end" cx="546" cy="92" r="5"/>
+              <circle class="route-traveller" r="3.5"><animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .55 1"><mpath href="#route-path"/></animateMotion></circle>
+            </svg>
+            <figcaption><span>Islamabad</span><span>Pittsburgh</span></figcaption>
+          </figure>
+          <a class="begin-link" data-reveal href="#iiui">Here’s how it happened <span aria-hidden="true">↓</span></a>
         </div>
-      </div>
-      <span class="scene-footnote">International Islamic University, Islamabad</span>
-    </section>
+        <p class="scene-footnote" data-reveal>00 / The game before everything else</p>
+      </section>
 
-    <section class="chapter" id="openai" data-title="The bot" data-color="7fffd2" data-caption="Dota 2 → OpenAI’s bot → AI" aria-labelledby="title-2">
-      <div class="chapter-content">
-        <p class="eyebrow">02 · The thing that got me</p>
-        <h2 id="title-2">Then OpenAI<br>made a <em>Dota bot.</em></h2>
-        <div class="chapter-prose">
-          <p>Watching it play was just… wow.</p>
-          <p>I knew this game. Seeing AI do that made it feel very real. I remember thinking, “I have to go into AI.”</p>
+      <section class="chapter" id="iiui" data-title="IIUI" style="--hl: #c6bcff" aria-labelledby="title-1">
+        <div class="chapter-content">
+          <p class="eyebrow">01 · University</p>
+          <h2 id="title-1">I wanted to<br>make <em>games.</em></h2>
+          <div class="chapter-prose" data-reveal>
+            <p>I ended up at IIUI. It wasn’t known for its CS program, and there weren’t many resources for what I wanted to learn.</p>
+            <p>But I loved computer science. I loved the idea that I could make things.</p>
+            <p class="aside-note">I never actually made a game, by the way.</p>
+          </div>
         </div>
-        <p class="handwritten">That was it. I was hooked.</p>
-      </div>
-      <span class="scene-footnote">OpenAI’s Dota bot</span>
-    </section>
+        <p class="scene-footnote" data-reveal>International Islamic University, Islamabad</p>
+      </section>
 
-    <section class="chapter" id="self-study" data-title="Self-study" data-color="99beff" data-caption="Andrew Ng / Coursera / NYU Deep Learning" aria-labelledby="title-3">
-      <div class="chapter-content">
-        <p class="eyebrow">03 · Learning it myself</p>
-        <h2 id="title-3">Mostly me,<br>and <em>the internet.</em></h2>
-        <div class="chapter-prose">
-          <p>Andrew Ng. Coursera. Yann LeCun’s deep learning course. Whatever I could find.</p>
-          <p>I didn’t have much around me at university for AI, so I did the studying myself.</p>
+      <section class="chapter" id="openai" data-title="The bot" style="--hl: #7fffd2" aria-labelledby="title-2">
+        <div class="chapter-content">
+          <p class="eyebrow">02 · The thing that got me</p>
+          <h2 id="title-2">Then OpenAI<br>made a <em>Dota bot.</em></h2>
+          <div class="chapter-prose" data-reveal>
+            <p>Watching it play was just… wow.</p>
+            <p>I knew this game. Seeing AI do that made it feel very real. I remember thinking, “I have to go into AI.”</p>
+          </div>
+          <p class="handwritten" data-reveal>That was it. I was hooked.</p>
         </div>
-        <div class="course-notes" aria-label="Courses I studied"><span>Machine learning</span><span>Deep learning</span><span>The maths underneath</span></div>
-      </div>
-      <span class="scene-footnote">Self-study, alongside my CS degree</span>
-    </section>
+        <p class="scene-footnote" data-reveal>OpenAI’s Dota bot</p>
+      </section>
 
-    <section class="chapter" id="first-job" data-title="First break" data-color="ffd09b" data-caption="One introduction. A three-person startup." aria-labelledby="title-4">
-      <div class="chapter-content">
-        <p class="eyebrow">04 · Looking for a chance</p>
-        <h2 id="title-4">Summer was<br>almost <em>over.</em></h2>
-        <div class="chapter-prose">
-          <p>I couldn’t get an internship in my second year. Third year wasn’t going much better.</p>
-          <p>Then, just before the summer ended, a mutual connection made an introduction. I joined a tiny startup: three people doing AI services.</p>
-          <p>I learned a lot there.</p>
+      <section class="chapter" id="self-study" data-title="Self-study" style="--hl: #99beff" aria-labelledby="title-3">
+        <div class="chapter-content">
+          <p class="eyebrow">03 · Learning it myself</p>
+          <h2 id="title-3">Mostly me,<br>and <em>the internet.</em></h2>
+          <div class="chapter-prose" data-reveal>
+            <p>Andrew Ng. Coursera. Yann LeCun’s deep learning course. Whatever I could find.</p>
+            <p>I didn’t have much around me at university for AI, so I did the studying myself.</p>
+          </div>
+          <div class="course-notes" data-reveal aria-label="Courses I studied"><span>Machine learning</span><span>Deep learning</span><span>The maths underneath</span></div>
         </div>
-      </div>
-      <span class="scene-footnote">Third year of university</span>
-    </section>
+        <p class="scene-footnote" data-reveal>Self-study, alongside my CS degree</p>
+      </section>
 
-    <section class="chapter" id="red-buffer" data-title="Red Buffer" data-color="ff8c82" data-caption="6 or 7 applications → Junior ML Engineer" aria-labelledby="title-5">
-      <div class="chapter-content">
-        <p class="eyebrow">05 · Red Buffer · 2022</p>
-        <h2 id="title-5">I applied.<br>And <em>applied again.</em></h2>
-        <div class="chapter-prose">
-          <p>Six or seven times, to Red Buffer. The two Google Developer Experts in AI I knew of in Pakistan both worked there. I really wanted to work with them.</p>
-          <p>They finally hired me as a junior ML engineer in my last semester. I skipped my classes and went to my full-time job.</p>
+      <section class="chapter" id="first-job" data-title="First break" style="--hl: #ffd09b" aria-labelledby="title-4">
+        <div class="chapter-content">
+          <p class="eyebrow">04 · Looking for a chance</p>
+          <h2 id="title-4">Summer was<br>almost <em>over.</em></h2>
+          <div class="chapter-prose" data-reveal>
+            <p>I couldn’t get an internship in my second year. Third year wasn’t going much better.</p>
+            <p>Then, just before the summer ended, a mutual connection made an introduction. I joined a tiny startup: three people doing AI services.</p>
+            <p>I learned a lot there.</p>
+          </div>
         </div>
-        <p class="handwritten">I really wanted that job.</p>
-      </div>
-      <span class="scene-footnote">Red Buffer · April 2022 – March 2024</span>
-    </section>
+        <p class="scene-footnote" data-reveal>Third year of university</p>
+      </section>
 
-    <section class="chapter" id="umar" data-title="A reply" data-color="9fe5ff" data-caption="A GTC talk → Umar Iqbal → My first introduction to research" aria-labelledby="title-6">
-      <div class="chapter-content">
-        <p class="eyebrow">06 · A name I recognised</p>
-        <h2 id="title-6">I messaged him.<br><em>He replied.</em></h2>
-        <div class="chapter-prose">
-          <p>I was working on pose estimation at Red Buffer and watching an NVIDIA GTC talk. “Iqbal et al.” kept coming up.</p>
-          <p>Iqbal is a common Pakistani name. I looked him up: Umar Iqbal. I sent him a message, and he wrote back in detail.</p>
-          <p>That got me interested in research. It was the first time I’d heard of CVPR.</p>
+      <section class="chapter" id="red-buffer" data-title="Red Buffer" style="--hl: #ff8c82" aria-labelledby="title-5">
+        <div class="chapter-content">
+          <p class="eyebrow">05 · Red Buffer · 2022</p>
+          <h2 id="title-5">I applied.<br>And <em>applied again.</em></h2>
+          <div class="chapter-prose" data-reveal>
+            <p>Six or seven times, to Red Buffer. The two Google Developer Experts in AI I knew of in Pakistan both worked there. I really wanted to work with them.</p>
+            <p>They finally hired me as a junior ML engineer in my last semester. I skipped my classes and went to my full-time job.</p>
+          </div>
+          <p class="handwritten" data-reveal>I really wanted that job.</p>
         </div>
-      </div>
-      <span class="scene-footnote">Pose estimation at Red Buffer · NVIDIA GTC</span>
-    </section>
+        <p class="scene-footnote" data-reveal>Red Buffer · April 2022 – March 2024</p>
+      </section>
 
-    <section class="chapter" id="cohere" data-title="Cohere" data-color="cbffa4" data-caption="A Discord with around 400 people. A much bigger world." aria-labelledby="title-7">
-      <div class="chapter-content">
-        <p class="eyebrow">07 · Cohere Labs community</p>
-        <h2 id="title-7">I found<br><em>my people.</em></h2>
-        <div class="chapter-prose">
-          <p>There were about 400 people in the Discord when I joined. Researchers, study groups, conversations I hadn’t had access to before.</p>
-          <p>Robert Joseph helped me give my first talk to a research community. It was about OpenAI’s CLIP.</p>
-          <p>Then I applied to be a community lead. I became the first regional lead for Asia.</p>
+      <section class="chapter" id="umar" data-title="A reply" style="--hl: #9fe5ff" aria-labelledby="title-6">
+        <div class="chapter-content">
+          <p class="eyebrow">06 · A name I recognised</p>
+          <h2 id="title-6">I messaged him.<br><em>He replied.</em></h2>
+          <div class="chapter-prose" data-reveal>
+            <p>I was working on pose estimation at Red Buffer and watching an NVIDIA GTC talk. “Iqbal et al.” kept coming up.</p>
+            <p>Iqbal is a common Pakistani name. I looked him up: Umar Iqbal. I sent him a message, and he wrote back in detail.</p>
+            <p>That got me interested in research. It was the first time I’d heard of CVPR.</p>
+          </div>
         </div>
-        <p class="handwritten">I had absolutely no idea how to lead a community.</p>
-      </div>
-      <span class="scene-footnote">I joined as a member. Everything else came later.</span>
-    </section>
+        <p class="scene-footnote" data-reveal>Pose estimation at Red Buffer · NVIDIA GTC</p>
+      </section>
 
-    <section class="chapter" id="community" data-title="85+ sessions" data-color="e4ff95" data-caption="85+ guest sessions · Researchers from across Asia" aria-labelledby="title-8">
-      <div class="chapter-content">
-        <p class="eyebrow">08 · Figuring it out together</p>
-        <h2 id="title-8">Somehow,<br><em>85+ sessions.</em></h2>
-        <div class="chapter-prose">
-          <p>I learned to reach out to researchers and invite them to speak. People from leading universities said yes.</p>
-          <p>We ran study groups, too. After attending Oxford’s ML Summer School, I wanted to help make something like it available for free.</p>
-          <p>Our summer school got over 2,000 registrations. More than 1,300 people joined live.</p>
+      <section class="chapter" id="cohere" data-title="Cohere" style="--hl: #cbffa4" aria-labelledby="title-7">
+        <div class="chapter-content">
+          <p class="eyebrow">07 · Cohere Labs community</p>
+          <h2 id="title-7">I found<br><em>my people.</em></h2>
+          <div class="chapter-prose" data-reveal>
+            <p>There were about <span class="count" data-to="400">400</span> people in the Discord when I joined. Researchers, study groups, conversations I hadn’t had access to before.</p>
+            <p>Robert Joseph helped me give my first talk to a research community. It was about OpenAI’s CLIP.</p>
+            <p>Then I applied to be a community lead. I became the first regional lead for Asia.</p>
+          </div>
+          <p class="handwritten" data-reveal>I had absolutely no idea how to lead a community.</p>
         </div>
-        <a class="inline-link" href="https://labscommunity.cohere.com/blog/2026/from-showing-up-to-leading/">I wrote more about this <span aria-hidden="true">↗</span></a>
-      </div>
-      <span class="scene-footnote">With the Cohere community, co-leads, speakers, and volunteers.</span>
-    </section>
+        <p class="scene-footnote" data-reveal>I joined as a member. Everything else came later.</p>
+      </section>
 
-    <section class="chapter" id="papers" data-title="Research" data-color="abaaff" data-caption="NeurIPS 2024 · ICLR 2025 · CVPR 2025 workshop" aria-labelledby="title-9">
-      <div class="chapter-content">
-        <p class="eyebrow">09 · From reading papers to writing them</p>
-        <h2 id="title-9">My name<br>on <em>a paper.</em></h2>
-        <div class="chapter-prose">
-          <p>Through the Discord, I joined the Data Provenance Initiative. That led to papers at NeurIPS 2024 and ICLR 2025.</p>
-          <p>I also worked on a first-author paper about vision-language models. It was accepted at a CVPR 2025 workshop.</p>
-          <p>All this time, I was working full-time: two years at Red Buffer, then about two and a half at Roll.ai.</p>
+      <section class="chapter" id="community" data-title="85+ sessions" style="--hl: #e4ff95" aria-labelledby="title-8">
+        <div class="chapter-content">
+          <p class="eyebrow">08 · Figuring it out together</p>
+          <h2 id="title-8">Somehow,<br><em><span class="count" data-to="85" data-suffix="+">85+</span> sessions.</em></h2>
+          <div class="chapter-prose" data-reveal>
+            <p>I learned to reach out to researchers and invite them to speak. People from leading universities said yes.</p>
+            <p>We ran study groups, too. After attending Oxford’s ML Summer School, I wanted to help make something like it available for free.</p>
+            <p>Our summer school got over <span class="count" data-to="2000">2,000</span> registrations. More than <span class="count" data-to="1300">1,300</span> people joined live.</p>
+          </div>
+          <a class="inline-link" data-reveal href="https://labscommunity.cohere.com/blog/2026/from-showing-up-to-leading/">I wrote more about this <span aria-hidden="true">↗</span></a>
         </div>
-        <a class="inline-link" href="{{ '/#publications' | relative_url }}">The papers <span aria-hidden="true">↗</span></a>
-      </div>
-      <span class="scene-footnote">Research happened alongside the day job.</span>
-    </section>
+        <p class="scene-footnote" data-reveal>With the Cohere community, co-leads, speakers, and volunteers.</p>
+      </section>
 
-    <section class="chapter" id="rejections" data-title="Four years" data-color="e8b2a2" data-caption="Four years of graduate-school rejections" aria-labelledby="title-10">
-      <div class="chapter-content">
-        <p class="eyebrow">10 · The part the résumé leaves out</p>
-        <h2 id="title-10">Four years.<br><em>All rejections.</em></h2>
-        <div class="chapter-prose">
-          <p>I was applying to grad school through all of this. For four years, every school rejected me.</p>
-          <p>The jobs, the research, the community work—that was happening while I was still trying to get in.</p>
+      <section class="chapter" id="papers" data-title="Research" style="--hl: #abaaff" aria-labelledby="title-9">
+        <div class="chapter-content">
+          <p class="eyebrow">09 · From reading papers to writing them</p>
+          <h2 id="title-9">My name<br>on <em>a paper.</em></h2>
+          <div class="chapter-prose" data-reveal>
+            <p>Through the Discord, I joined the Data Provenance Initiative. That led to papers at NeurIPS 2024 and ICLR 2025.</p>
+            <p>I also worked on a first-author paper about vision-language models. It was accepted at a CVPR 2025 workshop.</p>
+            <p>All this time, I was working full-time: two years at Red Buffer, then about two and a half at Roll.ai.</p>
+          </div>
+          <a class="inline-link" data-reveal href="{{ '/#publications' | relative_url }}">The papers <span aria-hidden="true">↗</span></a>
         </div>
-      </div>
-      <span class="scene-footnote">Four years of applications, alongside full-time work</span>
-    </section>
+        <p class="scene-footnote" data-reveal>Research happened alongside the day job.</p>
+      </section>
 
-    <section class="chapter chapter-arrival" id="cmu" data-title="CMU" data-color="ffdca4" data-caption="Pittsburgh, Pennsylvania · Carnegie Mellon University" aria-labelledby="title-11">
-      <div class="chapter-content">
-        <p class="eyebrow">11 · Pittsburgh</p>
-        <h2 id="title-11">And then,<br><em>CMU.</em></h2>
-        <div class="chapter-prose">
-          <p>I got in.</p>
-          <p>I’m now studying AI Engineering at Carnegie Mellon and working on self-supervised learning at TarrLab with Michael Tarr and Deva Ramanan.</p>
-          <p>A while ago, I didn’t even know what CVPR was. I think about that sometimes.</p>
+      <section class="chapter" id="rejections" data-title="Four years" style="--hl: #e8b2a2" aria-labelledby="title-10">
+        <div class="chapter-content">
+          <p class="eyebrow">10 · The part the résumé leaves out</p>
+          <h2 id="title-10">Four years.<br><em>All rejections.</em></h2>
+          <div class="chapter-prose" data-reveal>
+            <p>I was applying to grad school through all of this. For four years, every school rejected me.</p>
+            <p>The jobs, the research, the community work—that was happening while I was still trying to get in.</p>
+          </div>
+          <ol class="tally" data-reveal aria-label="Four application cycles, all rejected">
+            <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M10 10 30 30M30 10 10 30" pathLength="1"/></svg><span>Year 1</span></li>
+            <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M10 10 30 30M30 10 10 30" pathLength="1"/></svg><span>Year 2</span></li>
+            <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M10 10 30 30M30 10 10 30" pathLength="1"/></svg><span>Year 3</span></li>
+            <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M10 10 30 30M30 10 10 30" pathLength="1"/></svg><span>Year 4</span></li>
+          </ol>
         </div>
-        <div class="signature"><img src="{{ '/images/me3.jpeg' | relative_url }}" alt="Ahmad Mustafa Anis" width="48" height="48" loading="lazy"><span>Ahmad<span>Still a lot to learn.</span></span></div>
-        <div class="closing-links"><a class="inline-link" href="{{ '/' | relative_url }}">What I’m working on <span aria-hidden="true">↗</span></a><a class="inline-link" href="#beginning">Back to the beginning <span aria-hidden="true">↑</span></a></div>
-      </div>
-      <span class="scene-footnote">Thanks for spending a few minutes with my story.</span>
-    </section>
-  </main>
+        <p class="scene-footnote" data-reveal>Four years of applications, alongside full-time work</p>
+      </section>
 
-  <nav class="journey-dock" aria-label="Journey navigation" hidden>
-    <div class="journey-status"><span id="chapter-number">00</span><span class="status-divider">/</span><span>11</span><span id="chapter-name">Dota</span></div>
-    <ol class="journey-stops">
-      <li><a href="#beginning" aria-label="Beginning: Dota" data-label="Dota"><span></span></a></li>
-      <li><a href="#iiui" aria-label="Chapter 1: IIUI" data-label="IIUI"><span></span></a></li>
-      <li><a href="#openai" aria-label="Chapter 2: OpenAI’s Dota bot" data-label="The bot"><span></span></a></li>
-      <li><a href="#self-study" aria-label="Chapter 3: Self-study" data-label="Self-study"><span></span></a></li>
-      <li><a href="#first-job" aria-label="Chapter 4: First internship" data-label="First break"><span></span></a></li>
-      <li><a href="#red-buffer" aria-label="Chapter 5: Red Buffer" data-label="Red Buffer"><span></span></a></li>
-      <li><a href="#umar" aria-label="Chapter 6: Umar’s reply" data-label="A reply"><span></span></a></li>
-      <li><a href="#cohere" aria-label="Chapter 7: Cohere" data-label="Cohere"><span></span></a></li>
-      <li><a href="#community" aria-label="Chapter 8: Community sessions" data-label="85+ sessions"><span></span></a></li>
-      <li><a href="#papers" aria-label="Chapter 9: Research" data-label="Research"><span></span></a></li>
-      <li><a href="#rejections" aria-label="Chapter 10: Rejections" data-label="Four years"><span></span></a></li>
-      <li><a href="#cmu" aria-label="Chapter 11: CMU" data-label="CMU"><span></span></a></li>
-    </ol>
-    <div class="journey-arrows"><button id="previous-chapter" type="button" aria-label="Previous chapter">←</button><button id="next-chapter" type="button" aria-label="Next chapter">→</button></div>
-  </nav>
+      <section class="chapter chapter-arrival" id="cmu" data-title="CMU" style="--hl: #ffdca4" aria-labelledby="title-11">
+        <div class="chapter-content">
+          <p class="eyebrow">11 · Pittsburgh</p>
+          <h2 id="title-11">And then,<br><em>CMU.</em></h2>
+          <div class="chapter-prose" data-reveal>
+            <p>I got in.</p>
+            <p>I’m now studying AI Engineering at Carnegie Mellon and working on self-supervised learning at TarrLab with Michael Tarr and Deva Ramanan.</p>
+            <p>A while ago, I didn’t even know what CVPR was. I think about that sometimes.</p>
+          </div>
+          <div class="signature" data-reveal><img src="{{ '/images/me3.jpeg' | relative_url }}" alt="Ahmad Mustafa Anis" width="48" height="48" loading="lazy"><span>Ahmad<span>Still a lot to learn.</span></span></div>
+          <div class="closing-links" data-reveal><a class="inline-link" href="{{ '/' | relative_url }}">What I’m working on <span aria-hidden="true">↗</span></a><a class="inline-link" href="#beginning">Back to the beginning <span aria-hidden="true">↑</span></a></div>
+        </div>
+        <p class="scene-footnote" data-reveal>Thanks for spending a few minutes with my story.</p>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
