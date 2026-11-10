@@ -105,18 +105,13 @@
     M.animate(blocks, { opacity: [0, 1], y: [16, 0], filter: ['blur(6px)', 'blur(0px)'] }, { duration: 0.7, ease, delay: M.stagger(0.12, { startDelay: settled }) });
     chapter.querySelectorAll('.count').forEach(el => countUp(el, settled));
 
-    const route = chapter.querySelector('.route');
-    if (route) {
-      const start = settled + 0.3;
-      M.animate(route.querySelector('.route-track'), { strokeDashoffset: [1, 0] }, { duration: 1.8, delay: start, ease: [0.65, 0, 0.35, 1] });
-      M.animate(route.querySelector('.route-end'), { opacity: [0, 1], scale: [0, 1] }, { ...spring, delay: start + 1.6 });
-      M.animate(route.querySelector('.route-traveller'), { opacity: [0, 1] }, { duration: 0.4, delay: start + 1.9 });
-    }
+    if (chapter.querySelector('[data-globe]')) window.storyGlobe?.play(settled + 0.3);
     chapter.querySelectorAll('.tally path').forEach((path, i) => {
       M.animate(path, { strokeDashoffset: [1, 0] }, { duration: 0.5, delay: settled + 0.5 + i * 0.35, ease });
     });
   }
 
+  if (!animated) window.storyGlobe?.play();
   if (animated) {
     chapters.forEach(chapter => {
       splitWords(chapter.querySelector('h1, h2'));

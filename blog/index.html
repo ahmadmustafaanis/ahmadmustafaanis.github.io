@@ -1,75 +1,47 @@
 ---
-layout: null
+layout: default
 title: Writing
 seo_title: AI Research Notes by Ahmad Mustafa Anis
 description: Research notes on self-supervised learning, computer vision, world models, and AI engineering by Pakistani AI researcher Ahmad Mustafa Anis.
 permalink: /blog/
 ---
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-{% include seo-meta.html %}
-    <meta name="theme-color" content="#f4f0e8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="{{ '/images/favicon/favicon.ico' | relative_url }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ '/stylesheet.css' | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}">
-  </head>
-  <body class="blog-body">
-    <header class="blog-site-header">
-      <nav class="blog-shell blog-nav" aria-label="Primary navigation">
-        <a class="blog-brand" href="{{ '/' | relative_url }}">Ahmad Mustafa Anis</a>
-        <div class="blog-nav-links">
-          <a href="{{ '/story/' | relative_url }}">Story</a>
-          <a href="{{ '/#research' | relative_url }}">Research</a>
-          <a href="{{ '/#updates' | relative_url }}">Updates</a>
-          <a href="{{ '/#publications' | relative_url }}">Publications</a>
-          <a href="{{ '/blog/' | relative_url }}" aria-current="page">Writing</a>
-        </div>
-      </nav>
-    </header>
-
-    <main class="blog-shell blog-index">
-      <header class="blog-index-hero">
-        <span class="blog-kicker">Research and engineering notes</span>
-        <h1>Ideas, explained carefully.</h1>
-        <p>Long-form notes on machine learning, computer vision, research practice, and the questions I am exploring.</p>
-      </header>
-
       {% assign sorted_blogs = site.blogs | sort: "date" | reverse %}
-      {% if sorted_blogs.size > 0 %}
-        {% assign topic_groups = sorted_blogs | group_by_exp: "post", "post.topic | default: 'Other notes'" %}
-        <nav class="topic-nav" aria-label="Blog topics">
-          <span>Browse by topic</span>
-          {% for group in topic_groups %}
-            <a href="#{{ group.name | slugify }}">{{ group.name }} <small>{{ group.items.size }}</small></a>
-          {% endfor %}
-        </nav>
-
-        {% for group in topic_groups %}
-          <section class="topic-section" id="{{ group.name | slugify }}">
-            <div class="topic-heading">
-              <div>
-                <span class="blog-kicker">Topic</span>
-                <h2>{{ group.name }}</h2>
-              </div>
-              <span>{{ group.items.size }} {% if group.items.size == 1 %}article{% else %}articles{% endif %}</span>
-            </div>
-            <div class="blog-card-grid">
-              {% for post in group.items %}
-                {% include blog-card.html post=post %}
+      {% assign topic_groups = sorted_blogs | group_by_exp: "post", "post.topic | default: 'Other notes'" %}
+      <div class="wrap">
+        <header class="page-head">
+          <h1 class="page-title">Writing</h1>
+          <p class="page-intro">Long-form notes on machine learning, computer vision, research practice, and the questions I am exploring.</p>
+          {% if topic_groups.size > 1 %}
+            <nav class="topic-nav" aria-label="Topics">
+              {% for group in topic_groups %}
+                <a href="#{{ group.name | slugify }}">{{ group.name }} <small>{{ group.items.size }}</small></a>
               {% endfor %}
+            </nav>
+          {% endif %}
+        </header>
+      </div>
+
+      {% if sorted_blogs.size > 0 %}
+        {% for group in topic_groups %}
+          <section class="band" id="{{ group.name | slugify }}" aria-labelledby="{{ group.name | slugify }}-title">
+            <div class="wrap band-grid">
+              <h2 class="band-label" id="{{ group.name | slugify }}-title">{{ group.name }}</h2>
+              <div class="band-body posts">
+                {% for post in group.items %}
+                  {% include blog-card.html post=post %}
+                {% endfor %}
+              </div>
             </div>
           </section>
         {% endfor %}
       {% else %}
-        <section class="blog-empty-state">
-          <h2>The first article is in progress.</h2>
-          <p>New research notes will appear here soon.</p>
+        <section class="band" aria-labelledby="empty-title">
+          <div class="wrap band-grid">
+            <h2 class="band-label" id="empty-title">Coming up</h2>
+            <div class="band-body empty">
+              <p class="statement">The first article is in progress.</p>
+              <p>New research notes will appear here soon.</p>
+            </div>
+          </div>
         </section>
       {% endif %}
-    </main>
-  </body>
-</html>

@@ -31,13 +31,16 @@ Curriculum learning orders training examples from easier to harder...
 
 ## Equations and loss functions
 
-Inline equations use `\(...\)`:
+Inline equations use `$$...$$` inside a sentence:
 
 ```markdown
-The model minimizes \(L(\theta)\) over the training set.
+The model minimizes $$L(\theta)$$ over the training set.
 ```
 
-Centered equations use `$$...$$`:
+(`\(...\)` does not work here: Markdown strips the backslashes before MathJax
+sees them.)
+
+Centered equations use `$$...$$` on lines of their own:
 
 ```markdown
 $$

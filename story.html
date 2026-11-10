@@ -8,15 +8,8 @@ permalink: /story/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-{% include seo-meta.html %}
-  <meta name="theme-color" content="#faf9f6">
-  <link rel="icon" href="{{ '/images/favicon/favicon.ico' | relative_url }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/story.css' | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}">
+{% include head.html %}
+  <link rel="stylesheet" href="{{ '/assets/css/story.css' | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}">
   <script>
     // Hide animated elements before first paint; story.js reveals them, or this timer does if Motion never loads.
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -25,16 +18,17 @@ permalink: /story/
     }
   </script>
   <script defer src="https://cdn.jsdelivr.net/npm/motion@14.0.0/dist/motion.js"></script>
-  <script defer src="{{ '/story.js' | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}"></script>
+  <script defer src="{{ '/assets/js/globe.js' | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}"></script>
+  <script defer src="{{ '/assets/js/story.js' | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}"></script>
 </head>
-<body>
+<body class="story">
   <a class="skip-link" href="#beginning">Skip to my story</a>
   <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
   <header class="story-header">
-    <a class="wordmark" href="{{ '/' | relative_url }}" aria-label="Ahmad Mustafa Anis, back to portfolio">ahmad<span>.</span></a>
+    {% include brand.html label="Ahmad Mustafa Anis, back to the homepage" %}
     <p class="chapter-counter" aria-hidden="true"><span id="chapter-number">00</span><span class="counter-total">/ 11</span><span id="chapter-name">Dota</span></p>
-    <a class="exit-link" href="{{ '/' | relative_url }}">Portfolio <span aria-hidden="true">↗</span></a>
+    <a class="exit-link" href="{{ '/' | relative_url }}"><span class="exit-text">Homepage</span><span class="arrow arrow-out" aria-hidden="true"></span></a>
   </header>
 
   <div class="layout">
@@ -60,23 +54,18 @@ permalink: /story/
     <main id="story">
       <section class="chapter chapter-opening" id="beginning" data-title="Dota" style="--hl: #ff865b" aria-labelledby="title-0">
         <div class="chapter-content">
-          <p class="eyebrow"><span class="live-dot"></span> Ahmad Mustafa Anis · Pakistan → Pittsburgh</p>
+          <p class="eyebrow"><span class="live-dot"></span> Ahmad Mustafa Anis · Islamabad to Pittsburgh</p>
           <h1 id="title-0">It started<br>with <em>Dota 2.</em></h1>
           <div class="chapter-prose" data-reveal>
             <p>I played a lot in high school. Enough to mess up my grades.</p>
             <p>Later, watching a bot play the same game would get me into AI. But I didn’t know that yet.</p>
           </div>
-          <figure class="route" data-reveal aria-label="From Islamabad to Pittsburgh">
-            <svg viewBox="0 0 560 110" aria-hidden="true" focusable="false">
-              <path class="route-track" id="route-path" d="M14 92 C 170 -18, 390 -18, 546 92" pathLength="1"/>
-              <circle class="route-stop" cx="14" cy="92" r="5"/>
-              <circle class="route-stop route-end" cx="546" cy="92" r="5"/>
-              <circle class="route-traveller" r="3.5"><animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .55 1"><mpath href="#route-path"/></animateMotion></circle>
-            </svg>
-            <figcaption><span>Islamabad</span><span>Pittsburgh</span></figcaption>
-          </figure>
-          <a class="begin-link" data-reveal href="#iiui">Here’s how it happened <span aria-hidden="true">↓</span></a>
+          <a class="begin-link" data-reveal href="#iiui">Here’s how it happened <span class="arrow arrow-down" aria-hidden="true"></span></a>
         </div>
+        <figure class="globe" data-globe data-reveal hidden>
+          <canvas role="img" aria-label="A globe showing the great-circle route from Islamabad, over the Arctic, to Pittsburgh"></canvas>
+          <figcaption><span>Islamabad</span><span>Pittsburgh</span><span>about 11,300 km</span></figcaption>
+        </figure>
         <p class="scene-footnote" data-reveal>00 / The game before everything else</p>
       </section>
 
@@ -181,7 +170,7 @@ permalink: /story/
             <p>We ran study groups, too. After attending Oxford’s ML Summer School, I wanted to help make something like it available for free.</p>
             <p>Our summer school got over <span class="count" data-to="2000">2,000</span> registrations. More than <span class="count" data-to="1300">1,300</span> people joined live.</p>
           </div>
-          <a class="inline-link" data-reveal href="https://labscommunity.cohere.com/blog/2026/from-showing-up-to-leading/">I wrote more about this <span aria-hidden="true">↗</span></a>
+          <a class="inline-link" data-reveal href="https://labscommunity.cohere.com/blog/2026/from-showing-up-to-leading/">I wrote more about this <span class="arrow arrow-out" aria-hidden="true"></span></a>
         </div>
         <p class="scene-footnote" data-reveal>With the Cohere community, co-leads, speakers, and volunteers.</p>
       </section>
@@ -195,7 +184,7 @@ permalink: /story/
             <p>I also worked on a first-author paper about vision-language models. It was accepted at a CVPR 2025 workshop.</p>
             <p>All this time, I was working full-time: two years at Red Buffer, then about two and a half at Roll.ai.</p>
           </div>
-          <a class="inline-link" data-reveal href="{{ '/#publications' | relative_url }}">The papers <span aria-hidden="true">↗</span></a>
+          <a class="inline-link" data-reveal href="{{ '/#publications' | relative_url }}">The papers <span class="arrow arrow-out" aria-hidden="true"></span></a>
         </div>
         <p class="scene-footnote" data-reveal>Research happened alongside the day job.</p>
       </section>
@@ -227,8 +216,8 @@ permalink: /story/
             <p>I’m now studying AI Engineering at Carnegie Mellon and working on self-supervised learning at TarrLab with Michael Tarr and Deva Ramanan.</p>
             <p>A while ago, I didn’t even know what CVPR was. I think about that sometimes.</p>
           </div>
-          <div class="signature" data-reveal><img src="{{ '/images/me3.jpeg' | relative_url }}" alt="Ahmad Mustafa Anis" width="48" height="48" loading="lazy"><span>Ahmad<span>Still a lot to learn.</span></span></div>
-          <div class="closing-links" data-reveal><a class="inline-link" href="{{ '/' | relative_url }}">What I’m working on <span aria-hidden="true">↗</span></a><a class="inline-link" href="#beginning">Back to the beginning <span aria-hidden="true">↑</span></a></div>
+          <div class="signature" data-reveal><img src="{{ '/images/portrait.webp' | relative_url }}" alt="Ahmad Mustafa Anis" width="48" height="48" loading="lazy"><span>Ahmad<span>Still a lot to learn.</span></span></div>
+          <div class="closing-links" data-reveal><a class="inline-link" href="{{ '/' | relative_url }}">What I’m working on <span class="arrow arrow-out" aria-hidden="true"></span></a><a class="inline-link" href="#beginning">Back to the beginning <span class="arrow arrow-up" aria-hidden="true"></span></a></div>
         </div>
         <p class="scene-footnote" data-reveal>Thanks for spending a few minutes with my story.</p>
       </section>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+{% include head.html %}
+{% if page.url == '/' %}
+    <meta name="google-site-verification" content="spPzMbiiNd7Xz5RG2KcwUSww0oCRzc8GhZRV6a55oxE">
+{% include profile-schema.html %}
+{% endif %}
+{% if page.layout == 'blog' %}
+{% include article-schema.html %}
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['\\[', '\\]'], ['$$', '$$']],
+          processEscapes: true
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+{% endif %}
+    <script defer src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}"></script>
+{% for script in page.scripts %}
+    <script defer src="{{ script | relative_url }}?v={{ site.github.build_revision | default: site.asset_version }}"></script>
+{% endfor %}
+  </head>
+  <body class="page">
+    <a class="skip-link" href="#main">Skip to content</a>
+{% include site-header.html %}
+    <main id="main">
+{{ content }}
+    </main>
+{% include site-footer.html %}
+  </body>
+</html>
