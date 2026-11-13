@@ -705,6 +705,57 @@ a:hover > .arrow-left {
   color: var(--accent);
 }
 
+/* Experience */
+
+.jobs {
+  display: grid;
+}
+
+.job {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr);
+  gap: 0.25rem 1.5rem;
+  align-items: baseline;
+  padding-block: 1.35rem;
+  border-top: 1px solid var(--line);
+}
+
+.job:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.job:last-child {
+  padding-bottom: 0;
+}
+
+.job-dates {
+  color: var(--muted);
+  font: 400 0.8125rem/1.4 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.job-role {
+  font-size: 1.1875rem;
+  line-height: 1.28;
+  letter-spacing: -0.012em;
+}
+
+.job-org {
+  margin-top: 0.2rem;
+  color: var(--ink);
+  font: 500 0.9375rem/1.4 var(--font-display);
+}
+
+.job-note {
+  max-width: 36em;
+  margin-top: 0.5rem;
+  color: var(--ink-soft);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
 /* News */
 
 .news li {
@@ -1290,6 +1341,7 @@ a:hover > .arrow-left {
   }
 
   .news li,
+  .job,
   .post-row {
     grid-template-columns: minmax(0, 1fr);
     gap: 0.15rem;
